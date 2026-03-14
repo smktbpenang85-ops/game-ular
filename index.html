@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Ular Sejarah Tingkatan 4: Warisan Negara Bangsa</title>
+  <style>
+    :root {
+      --bg: #0f0d0a;
+      --panel: rgba(33, 26, 18, 0.94);
+      --panel-soft: rgba(55, 42, 28, 0.78);
+      --gold: #d9b56d;
+      --gold-soft: #f3dd9c;
+      --line: rgba(232, 199, 123, 0.22);
+      --text: #f8f1df;
+      --muted: #c7b795;
+      --easy: #2f8f5b;
+      --medium: #2f66c7;
+      --hard: #d06a2c;
+      --neutral: #3c3228;
+      --player1: #e84f4f;
+      --player2: #4db5ff;
+      --danger: #d94d4d;
+      --success: #35a06c;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, rgba(175, 138, 76, 0.2), transparent 34%),
+        linear-gradient(180deg, rgba(15, 13, 10, 0.98), rgba(29, 22, 15, 0.98)),
+        repeating-linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.02) 0 10px,
+          rgba(0, 0, 0, 0.03) 10px 20px
+        );
+    }
+
+    .container {
+      width: min(1380px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 32px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 20px;
+    }
+
+    .hero-card,
+    .toolbar,
+    .sidebar-card,
+    .board-wrapper,
+    .legend {
+      background: linear-gradient(180deg, rgba(45, 34, 22, 0.95), rgba(25, 19, 13, 0.98));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -70px auto;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217, 181, 109, 0.18), transparent 70%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(217, 181, 109, 0.12);
+      color: var(--gold-soft);
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 3.1rem);
+      line-height: 1.1;
+      color: #fff3d3;
+    }
+
+    .hero p,
+    .sidebar-card p,
+    .modal-body p,
+    .status-note {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .toolbar {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      border-radius: 14px;
+      padding: 12px 14px;
+      font: inherit;
+      font-weight: 700;
+      color: #fff9eb;
+      cursor: pointer;
+      transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    button:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      box-shadow: none;
+    }
+
+    .btn-primary { background: linear-gradient(180deg, #b18439, #8f672b); }
+    .btn-secondary { background: linear-gradient(180deg, #355f99, #294775); }
+    .btn-success { background: linear-gradient(180deg, #328e5f, #246544); }
+    .btn-warning { background: linear-gradient(180deg, #b86c34, #8c4f23); }
+    .btn-danger { background: linear-gradient(180deg, #9f4444, #763131); }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.9fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .board-wrapper {
+      padding: 20px;
+    }
+
+    .board-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .board-header h2,
+    .sidebar-card h3,
+    .legend h3 {
+      margin: 0;
+      color: #fff1cb;
+    }
+
+    .board-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--gold-soft);
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 8px;
+      aspect-ratio: 1 / 1;
+      position: relative;
+    }
+
+    .tile {
+      position: relative;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px;
+      min-height: 82px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24);
+    }
+
+    .tile.easy { background: linear-gradient(180deg, rgba(47, 143, 91, 0.9), rgba(29, 78, 52, 0.96)); }
+    .tile.medium { background: linear-gradient(180deg, rgba(47, 102, 199, 0.9), rgba(28, 57, 110, 0.96)); }
+    .tile.hard { background: linear-gradient(180deg, rgba(208, 106, 44, 0.92), rgba(119, 58, 23, 0.98)); }
+    .tile.neutral { background: linear-gradient(180deg, rgba(60, 50, 40, 0.96), rgba(42, 34, 27, 0.98)); }
+    .tile.start,
+    .tile.finish {
+      outline: 2px solid rgba(255, 244, 189, 0.35);
+    }
+
+    .tile-number {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: rgba(255, 251, 238, 0.98);
+    }
+
+    .tile-label,
+    .tile-special {
+      font-size: 0.72rem;
+      line-height: 1.25;
+      color: rgba(255, 248, 233, 0.9);
+      max-width: 92%;
+    }
+
+    .tile-special {
+      padding: 4px 6px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.18);
+      font-weight: 700;
+    }
+
+    .tokens {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+      min-height: 26px;
+    }
+
+    .token {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.14);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .token.active {
+      transform: scale(1.12);
+      box-shadow: 0 0 0 4px rgba(255, 240, 191, 0.22);
+    }
+
+    .token.moving {
+      animation: bounce 0.3s ease infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-5px) scale(1.08); }
+    }
+
+    .sidebar {
+      display: grid;
+      gap: 16px;
+    }
+
+    .sidebar-card {
+      padding: 18px;
+    }
+
+    .status-grid,
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .status-item,
+    .score-item,
+    .note-item,
+    .legend-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .status-item span,
+    .score-item span {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .status-item strong,
+    .score-item strong {
+      font-size: 1.02rem;
+      color: #fff8e2;
+    }
+
+    .player-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+    }
+
+    .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+    }
+
+    .legend {
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .legend-list,
+    .note-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .legend-item,
+    .note-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .legend-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 6px;
+      margin-top: 2px;
+      flex: none;
+    }
+
+    .note-item strong,
+    .legend-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #fff0c5;
+    }
+
+    .special-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .special-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+    }
+
+    .special-type {
+      min-width: 64px;
+      text-align: center;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .snake-type { background: rgba(217, 77, 77, 0.16); color: #ffb9b9; }
+    .ladder-type { background: rgba(53, 160, 108, 0.16); color: #bdebd3; }
+
+    .status-banner {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(217, 181, 109, 0.1);
+      border: 1px solid rgba(217, 181, 109, 0.2);
+      color: #ffecc4;
+      font-weight: 700;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      place-items: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.72);
+      z-index: 20;
+    }
+
+    .modal.show {
+      display: grid;
+      animation: fadeIn 0.18s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-card {
+      width: min(760px, 100%);
+      background: linear-gradient(180deg, rgba(40, 31, 21, 0.98), rgba(22, 17, 12, 1));
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transform: translateY(0);
+    }
+
+    .modal-header,
+    .modal-footer {
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .modal-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: none;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      color: #fff0c5;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .question-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .question-text {
+      margin: 0 0 16px;
+      font-size: 1.16rem;
+      line-height: 1.55;
+      color: #fff8e3;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option-btn {
+      text-align: left;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px;
+      border-radius: 14px;
+    }
+
+    .option-btn:hover:not(:disabled) {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: rgba(255, 255, 255, 0.09);
+    }
+
+    .feedback-box {
+      padding: 14px;
+      border-radius: 16px;
+      margin-bottom: 16px;
+    }
+
+    .feedback-box.correct {
+      background: rgba(53, 160, 108, 0.15);
+      border: 1px solid rgba(53, 160, 108, 0.3);
+    }
+
+    .feedback-box.wrong {
+      background: rgba(217, 77, 77, 0.13);
+      border: 1px solid rgba(217, 77, 77, 0.28);
+    }
+
+    .winner-card {
+      text-align: center;
+    }
+
+    .winner-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin: 0 0 8px;
+      color: #fff0c5;
+    }
+
+    .winner-score {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(217, 181, 109, 0.14);
+      color: #ffe8b0;
+      font-weight: 800;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .main-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 20px, 1380px);
+        padding-top: 14px;
+      }
+
+      .board-wrapper,
+      .sidebar-card,
+      .toolbar,
+      .hero-card {
+        padding: 16px;
+      }
+
+      .tile {
+        min-height: 68px;
+        padding: 6px;
+      }
+
+      .tile-number {
+        font-size: 0.78rem;
+      }
+
+      .tile-label,
+      .tile-special {
+        font-size: 0.62rem;
+      }
+
+      .status-grid,
+      .score-grid,
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <span class="eyebrow">Sejarah SPM Tingkatan 4</span>
+        <h1>Game Ular Sejarah Tingkatan 4: Warisan Negara Bangsa</h1>
+        <p>
+          Jelajah papan warisan dari START ke FINISH sambil menjawab soalan tentang negara bangsa,
+          kedaulatan, undang-undang, rakyat, dan Kesultanan Melayu Melaka.
+        </p>
+        <p class="status-note">
+          Konsep permainan: dua pemain, dadu, soalan mengikut tahap, ular sejarah yang menurunkan kedudukan,
+          dan tangga warisan yang menaikkan semangat serta ilmu.
+        </p>
+      </div>
+
+      <div class="toolbar">
+        <div class="button-grid">
+          <button id="startBtn" class="btn-primary">Mula Permainan</button>
+          <button id="rulesBtn" class="btn-ghost">Lihat Peraturan</button>
+          <button id="rollBtn" class="btn-secondary" disabled>Lontar Dadu</button>
+          <button id="answerBtn" class="btn-success" disabled>Jawab Soalan</button>
+          <button id="nextBtn" class="btn-warning" disabled>Seterusnya</button>
+          <button id="resetBtn" class="btn-danger">Main Semula</button>
+        </div>
+        <div class="status-banner" id="statusBanner">
+          Tekan “Mula Permainan” untuk memulakan cabaran warisan negara bangsa.
+        </div>
+      </div>
+    </section>
+
+    <section class="main-layout">
+      <div>
+        <div class="board-wrapper">
+          <div class="board-header">
+            <h2>Papan Permainan 1 hingga 64</h2>
+            <div class="board-meta">
+              <span class="pill">START di petak 1</span>
+              <span class="pill">FINISH di petak 64</span>
+              <span class="pill">2 Pemain</span>
+            </div>
+          </div>
+          <div id="board" class="board" aria-label="Papan permainan sejarah"></div>
+        </div>
+
+        <div class="legend">
+          <h3>Petunjuk Papan</h3>
+          <div class="legend-list">
+            <div class="legend-item">
+              <span class="legend-swatch" style="background: var(--easy);"></span>
+              <div><strong>Hijau = Mudah</strong> Soalan asas tentang konsep utama negara bangsa.</div>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch" style="background: var(--medium);"></span>
+              <div><strong>Biru = Sederhana</strong> Soalan aplikasi idea dan fungsi rakyat atau pemerintah.</div>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch" style="background: var(--hard);"></span>
+              <div><strong>Jingga = Sukar</strong> Soalan KBAT dan huraian idea warisan negara bangsa.</div>
+            </div>
+            <div class="legend-item">
+              <span class="legend-swatch" style="background: var(--neutral);"></span>
+              <div><strong>Petak Neutral</strong> Mendarat di sini masih menerima soalan berdasarkan zon tahap papan.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <h3>Panel Info Permainan</h3>
+          <div class="status-grid" style="margin-top: 12px;">
+            <div class="status-item">
+              <span>Giliran Semasa</span>
+              <strong id="currentTurn">Belum bermula</strong>
+            </div>
+            <div class="status-item">
+              <span>Dadu Terakhir</span>
+              <strong id="lastDice">-</strong>
+            </div>
+          </div>
+          <div class="score-grid" style="margin-top: 12px;">
+            <div class="score-item">
+              <span>Pemain 1</span>
+              <strong class="player-badge"><i class="dot" style="background: var(--player1);"></i><span id="player1Pos">Petak 1</span></strong>
+              <div class="status-note" id="player1Score">Markah: 0</div>
+            </div>
+            <div class="score-item">
+              <span>Pemain 2</span>
+              <strong class="player-badge"><i class="dot" style="background: var(--player2);"></i><span id="player2Pos">Petak 1</span></strong>
+              <div class="status-note" id="player2Score">Markah: 0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Ular Sejarah dan Tangga Warisan</h3>
+          <div id="specialList" class="special-list"></div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Nota Pembelajaran</h3>
+          <div class="note-list">
+            <div class="note-item">
+              <div>
+                <strong>Ciri Negara Bangsa</strong>
+                Pemerintah, rakyat, wilayah pengaruh, undang-undang dan lambang kebesaran saling melengkapi.
+              </div>
+            </div>
+            <div class="note-item">
+              <div>
+                <strong>Kedaulatan</strong>
+                Kedaulatan ialah kekuasaan tertinggi sesebuah kerajaan yang wajib dipertahankan.
+              </div>
+            </div>
+            <div class="note-item">
+              <div>
+                <strong>Kesultanan Melayu Melaka</strong>
+                Menjadi contoh penting sistem pemerintahan, undang-undang dan hubungan pemerintah-rakyat.
+              </div>
+            </div>
+            <div class="note-item">
+              <div>
+                <strong>Kepentingan Warisan</strong>
+                Warisan negara bangsa membentuk identiti, perpaduan, kestabilan dan penghormatan terhadap institusi negara.
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </div>
+
+  <div id="rulesModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Peraturan Permainan</h3>
+      </div>
+      <div class="modal-body">
+        <p>1. Tekan <strong>Mula Permainan</strong> untuk mengaktifkan giliran pemain 1.</p>
+        <p>2. Pemain melontar dadu dan token bergerak mengikut jumlah yang diperoleh.</p>
+        <p>3. Jika terkena ular sejarah, pemain turun; jika terkena tangga warisan, pemain naik.</p>
+        <p>4. Selepas pergerakan selesai, tekan <strong>Jawab Soalan</strong> untuk menjawab soalan mengikut kategori petak.</p>
+        <p>5. Jawapan betul menambah markah dan memberi bonus pergerakan; jawapan salah menyebabkan undur.</p>
+        <p>6. Tekan <strong>Seterusnya</strong> untuk menukar giliran. Pemain pertama sampai ke FINISH menang.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-primary" data-close="rulesModal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="questionModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Soalan Warisan Negara Bangsa</h3>
+      </div>
+      <div class="modal-body">
+        <div class="question-meta">
+          <span class="pill" id="questionPlayer"></span>
+          <span class="pill" id="questionCategory"></span>
+          <span class="pill" id="questionPosition"></span>
+        </div>
+        <p id="questionText" class="question-text"></p>
+        <div id="questionOptions" class="options"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-ghost" data-close="questionModal">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="feedbackModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Keputusan Jawapan</h3>
+      </div>
+      <div class="modal-body">
+        <div id="feedbackBox" class="feedback-box"></div>
+        <p id="feedbackAnswer"></p>
+        <p id="feedbackExplanation"></p>
+        <p id="feedbackMovement"></p>
+      </div>
+      <div class="modal-footer">
+        <button id="feedbackCloseBtn" class="btn-primary">Teruskan</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="winnerModal" class="modal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-body winner-card">
+        <p class="eyebrow">Tahniah</p>
+        <h2 id="winnerTitle" class="winner-title"></h2>
+        <p id="winnerText"></p>
+        <div id="winnerScore" class="winner-score"></div>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <button class="btn-primary" data-close="winnerModal">Tutup</button>
+        <button id="winnerResetBtn" class="btn-danger">Main Semula</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const BOARD_SIZE = 64;
+    const BOARD_DIMENSION = 8;
+    const CATEGORY_EFFECTS = {
+      easy: { bonus: 1, score: 1, penalty: 1, label: "Mudah" },
+      medium: { bonus: 2, score: 2, penalty: 2, label: "Sederhana" },
+      hard: { bonus: 3, score: 3, penalty: 3, label: "Sukar" }
+    };
+
+    const players = [
+      { name: "Pemain 1", color: "var(--player1)", position: 1, score: 0 },
+      { name: "Pemain 2", color: "var(--player2)", position: 1, score: 0 }
+    ];
+
+    const specialTiles = [
+      { start: 6, end: 18, label: "Pemerintah berwibawa", type: "ladder" },
+      { start: 19, end: 33, label: "Undang-undang dipatuhi", type: "ladder" },
+      { start: 37, end: 52, label: "Lambang kebesaran dihormati", type: "ladder" },
+      { start: 27, end: 14, label: "Rakyat tidak taat setia", type: "snake" },
+      { start: 41, end: 22, label: "Undang-undang diabaikan", type: "snake" },
+      { start: 58, end: 36, label: "Kedaulatan tergugat", type: "snake" }
+    ];
+
+    const easyQuestions = [
+      {
+        question: "Apakah maksud kedaulatan?",
+        options: ["Kekuasaan tertinggi sesebuah kerajaan", "Kawasan pertanian utama kerajaan", "Upacara pertabalan raja", "Perdagangan luar negeri"],
+        answer: 0,
+        explanation: "Kedaulatan merujuk kepada kuasa tertinggi sesebuah pemerintahan yang perlu dipertahankan."
+      },
+      {
+        question: "Siapakah ketua kerajaan dalam Kesultanan Melayu Melaka?",
+        options: ["Bendahara", "Sultan", "Temenggung", "Penghulu Bendahari"],
+        answer: 1,
+        explanation: "Sultan ialah ketua kerajaan dan menjadi tonggak pemerintahan Melaka."
+      },
+      {
+        question: "Apakah maksud wilayah pengaruh?",
+        options: ["Kawasan tempat undang-undang tidak berlaku", "Kawasan yang menerima dan mengiktiraf pemerintahan kerajaan", "Kawasan sawah padi milik rakyat", "Tempat menyimpan alat kebesaran"],
+        answer: 1,
+        explanation: "Wilayah pengaruh ialah kawasan yang berada di bawah kekuasaan dan pengaruh pemerintah."
+      },
+      {
+        question: "Pernyataan manakah benar tentang Hukum Kanun Melaka?",
+        options: ["Ia hanya digunakan dalam urusan laut", "Ia ialah undang-undang penting di Melaka", "Ia ditulis oleh pedagang asing", "Ia tidak berkaitan dengan pentadbiran"],
+        answer: 1,
+        explanation: "Hukum Kanun Melaka menjadi asas peraturan penting dalam pentadbiran dan kehidupan masyarakat."
+      },
+      {
+        question: "Apakah salah satu ciri negara bangsa kerajaan Alam Melayu?",
+        options: ["Pemerintah", "Mesin industri", "Pilihan raya umum", "Kilang moden"],
+        answer: 0,
+        explanation: "Pemerintah ialah salah satu ciri utama negara bangsa bersama rakyat, wilayah pengaruh dan undang-undang."
+      },
+      {
+        question: "Siapakah yang dimaksudkan dengan rakyat?",
+        options: ["Golongan pedagang asing sahaja", "Penduduk yang taat setia kepada pemerintah", "Hanya pembesar negeri", "Tentera upahan luar"],
+        answer: 1,
+        explanation: "Rakyat ialah penduduk yang berada di bawah pemerintahan dan menunjukkan taat setia kepada kerajaan."
+      },
+      {
+        question: "Apakah fungsi lambang kebesaran?",
+        options: ["Menggantikan undang-undang", "Menunjukkan identiti dan kedaulatan pemerintah", "Menjadi alat perdagangan", "Menentukan sempadan sungai"],
+        answer: 1,
+        explanation: "Lambang kebesaran seperti nobat dan cap mohor menggambarkan kewibawaan pemerintah."
+      },
+      {
+        question: "Apakah maksud undang-undang dalam konteks kerajaan Melayu?",
+        options: ["Cerita rakyat yang diwarisi", "Peraturan yang mengawal pentadbiran dan kehidupan masyarakat", "Lagu rasmi negeri", "Peta sempadan kerajaan"],
+        answer: 1,
+        explanation: "Undang-undang berperanan sebagai panduan untuk menjamin keamanan dan keadilan."
+      },
+      {
+        question: "Antara berikut, yang manakah termasuk lambang kebesaran diraja?",
+        options: ["Nobat", "Kapal dagang", "Sawah padi", "Gudang rempah"],
+        answer: 0,
+        explanation: "Nobat ialah antara lambang kebesaran yang berkait rapat dengan institusi diraja."
+      },
+      {
+        question: "Mengapakah warisan negara bangsa penting dipelajari?",
+        options: ["Supaya murid lupa sejarah", "Supaya rakyat mengenal identiti negara", "Untuk menghapuskan tradisi", "Untuk mengurangkan perpaduan"],
+        answer: 1,
+        explanation: "Pemahaman terhadap warisan negara bangsa membantu membina identiti dan semangat patriotik."
+      }
+    ];
+
+    const mediumQuestions = [
+      {
+        question: "Mengapakah undang-undang penting dalam sesebuah kerajaan?",
+        options: ["Untuk menambah hasil dagangan sahaja", "Untuk memastikan keamanan, keadilan dan ketertiban", "Untuk mengawal musim hujan", "Untuk memilih ketua kampung secara rawak"],
+        answer: 1,
+        explanation: "Undang-undang penting bagi mengekalkan ketertiban, melindungi rakyat dan mengukuhkan pemerintahan."
+      },
+      {
+        question: "Bagaimanakah rakyat membantu mengekalkan kedaulatan kerajaan?",
+        options: ["Melanggar arahan pemerintah", "Taat setia, mematuhi undang-undang dan mempertahankan negara", "Berpindah keluar tanpa sebab", "Menyebarkan fitnah terhadap kerajaan"],
+        answer: 1,
+        explanation: "Peranan rakyat sangat penting dalam mempertahankan kedaulatan melalui kesetiaan dan kepatuhan."
+      },
+      {
+        question: "Mengapa lambang kebesaran penting kepada pemerintah?",
+        options: ["Menunjukkan kuasa, keabsahan dan identiti kerajaan", "Menggantikan peranan rakyat", "Menentukan harga barang dagangan", "Mewujudkan persaingan antara wilayah"],
+        answer: 0,
+        explanation: "Lambang kebesaran mengukuhkan imej pemerintah dan menunjukkan keabsahan institusi diraja."
+      },
+      {
+        question: "Apakah peranan Bendahara dalam Kesultanan Melayu Melaka?",
+        options: ["Ketua tukang kapal", "Penasihat kanan sultan dan pengurus pentadbiran", "Hakim laut asing", "Pemungut cukai tunggal dari luar"],
+        answer: 1,
+        explanation: "Bendahara ialah pembesar utama yang membantu sultan dalam pentadbiran dan keselamatan kerajaan."
+      },
+      {
+        question: "Bagaimanakah wilayah pengaruh dapat melambangkan kekuatan kerajaan?",
+        options: ["Semakin luas pengaruh, semakin besar pengiktirafan terhadap pemerintahan", "Semakin kecil pengaruh, semakin kuat kerajaan", "Wilayah pengaruh tidak berkaitan dengan kerajaan", "Hanya dinilai melalui hasil sawah"],
+        answer: 0,
+        explanation: "Wilayah pengaruh yang luas menunjukkan kerajaan itu dihormati dan diiktiraf oleh kawasan lain."
+      },
+      {
+        question: "Apakah kesan pematuhan rakyat terhadap undang-undang?",
+        options: ["Mewujudkan keamanan dan kestabilan", "Meningkatkan jenayah", "Menjatuhkan kewibawaan pemerintah", "Menghapuskan adat istiadat"],
+        answer: 0,
+        explanation: "Apabila rakyat mematuhi undang-undang, kerajaan menjadi lebih aman dan teratur."
+      },
+      {
+        question: "Mengapakah sultan dianggap penting dalam negara bangsa Melaka?",
+        options: ["Sultan mengetuai pemerintahan dan menjaga kestabilan kerajaan", "Sultan hanya menjaga urusan hiburan", "Sultan tidak terlibat dalam pentadbiran", "Sultan dipilih oleh pedagang asing"],
+        answer: 0,
+        explanation: "Sultan menjadi pusat kuasa, lambang perpaduan dan pelindung kerajaan."
+      },
+      {
+        question: "Hukum Kanun Melaka dan Undang-Undang Laut Melaka menunjukkan bahawa Melaka mempunyai...",
+        options: ["Sistem perundangan yang tersusun", "Tanah jajahan yang sempit", "Rakyat yang tidak setia", "Pemerintahan yang lemah"],
+        answer: 0,
+        explanation: "Kedua-dua undang-undang ini membuktikan wujudnya sistem pemerintahan dan peraturan yang tersusun."
+      },
+      {
+        question: "Apakah hubungan antara pemerintah dengan rakyat dalam negara bangsa?",
+        options: ["Saling bergantung untuk mewujudkan kestabilan", "Tidak mempunyai kaitan", "Rakyat bebas tanpa sebarang tanggungjawab", "Pemerintah tidak memerlukan sokongan rakyat"],
+        answer: 0,
+        explanation: "Kerajaan stabil apabila pemerintah berwibawa dan rakyat pula taat setia serta bertanggungjawab."
+      },
+      {
+        question: "Mengapakah warisan negara bangsa perlu dipelihara oleh generasi muda?",
+        options: ["Supaya sejarah tidak diingati", "Supaya identiti negara dan semangat patriotik terus kukuh", "Supaya adat lama dilupakan", "Supaya rakyat tidak mengenal institusi negara"],
+        answer: 1,
+        explanation: "Pemeliharaan warisan membantu memastikan nilai, identiti dan semangat cintakan negara terus diwarisi."
+      }
+    ];
+
+    const hardQuestions = [
+      {
+        question: "Apakah kepentingan warisan negara bangsa dalam pembinaan identiti negara hari ini?",
+        options: ["Membantu rakyat memahami akar sejarah, identiti dan semangat patriotik", "Menjadikan rakyat kurang menghargai sejarah", "Menghapuskan institusi pemerintahan", "Mengurangkan perpaduan masyarakat"],
+        answer: 0,
+        explanation: "Warisan negara bangsa menjadi asas pembentukan identiti nasional dan memupuk rasa bangga terhadap negara."
+      },
+      {
+        question: "Apakah kesan jika rakyat tidak mematuhi undang-undang dalam sesebuah kerajaan?",
+        options: ["Keamanan bertambah baik", "Kestabilan tergugat dan kedaulatan boleh terancam", "Pentadbiran menjadi lebih tersusun", "Lambang kebesaran menjadi lebih dihormati"],
+        answer: 1,
+        explanation: "Ketidakpatuhan terhadap undang-undang membawa kepada huru-hara, kelemahan pentadbiran dan ancaman terhadap kedaulatan."
+      },
+      {
+        question: "Bandingkan peranan pemerintah dengan peranan rakyat dalam mengekalkan kestabilan kerajaan.",
+        options: ["Pemerintah memimpin dan menggubal dasar, rakyat menyokong dengan taat setia dan kepatuhan", "Pemerintah dan rakyat tidak mempunyai peranan", "Rakyat sahaja bertanggungjawab terhadap kestabilan", "Pemerintah hanya berperanan semasa peperangan"],
+        answer: 0,
+        explanation: "Kestabilan kerajaan memerlukan gabungan kepimpinan yang baik dan kerjasama rakyat."
+      },
+      {
+        question: "Mengapakah kewibawaan pemerintah penting untuk mempertahankan kedaulatan?",
+        options: ["Kerana ia membantu memperoleh kepercayaan rakyat dan mengukuhkan pentadbiran", "Kerana ia membolehkan undang-undang diabaikan", "Kerana ia menghapuskan peranan pembesar", "Kerana ia menjadikan rakyat bebas tanpa aturan"],
+        answer: 0,
+        explanation: "Pemerintah yang berwibawa dihormati rakyat dan mampu memelihara kestabilan serta keselamatan negara."
+      },
+      {
+        question: "Bagaimanakah undang-undang menyumbang kepada kegemilangan Kesultanan Melayu Melaka?",
+        options: ["Dengan mewujudkan aturan jelas dalam pentadbiran, perdagangan dan masyarakat", "Dengan mengurangkan kuasa sultan sepenuhnya", "Dengan menghapuskan hubungan luar", "Dengan menjadikan pelabuhan kurang selamat"],
+        answer: 0,
+        explanation: "Peraturan yang tersusun menjadikan Melaka pusat pemerintahan dan perdagangan yang dihormati."
+      },
+      {
+        question: "Apakah inferens terbaik tentang hubungan wilayah pengaruh dengan kedaulatan?",
+        options: ["Wilayah pengaruh yang diiktiraf menunjukkan kekuatan dan kedaulatan kerajaan", "Wilayah pengaruh tidak memberi kesan kepada kerajaan", "Kedaulatan wujud tanpa pemerintah", "Semakin luas wilayah, undang-undang tidak diperlukan"],
+        answer: 0,
+        explanation: "Pengiktirafan wilayah terhadap pemerintah menandakan kerajaan itu mempunyai kuasa dan kedaulatan."
+      },
+      {
+        question: "Mengapakah rakyat perlu menghormati lambang kebesaran negara dan institusi diraja?",
+        options: ["Kerana lambang itu mencerminkan identiti, maruah dan kesinambungan negara", "Kerana lambang itu hanya hiasan majlis", "Kerana lambang menggantikan undang-undang", "Kerana rakyat tidak perlu memahami maknanya"],
+        answer: 0,
+        explanation: "Penghormatan terhadap lambang kebesaran menunjukkan kesetiaan kepada negara dan institusi pemerintahan."
+      },
+      {
+        question: "Jika pemerintah lemah dan rakyat berpecah, apakah implikasi paling munasabah terhadap negara bangsa?",
+        options: ["Kedaulatan kukuh secara automatik", "Kerajaan menjadi lebih stabil tanpa usaha", "Kestabilan merosot dan kerajaan mudah terancam", "Undang-undang menjadi tidak perlu"],
+        answer: 2,
+        explanation: "Negara bangsa memerlukan pemerintah yang berwibawa dan rakyat yang bersatu untuk kekal stabil."
+      },
+      {
+        question: "Antara berikut, manakah hujah terbaik untuk menyatakan Kesultanan Melayu Melaka mempunyai ciri negara bangsa yang jelas?",
+        options: ["Mempunyai pemerintah, rakyat, wilayah pengaruh, undang-undang dan lambang kebesaran", "Hanya terkenal sebagai pusat hiburan", "Tidak mempunyai sistem pentadbiran", "Tidak menekankan hubungan pemerintah dengan rakyat"],
+        answer: 0,
+        explanation: "Ciri-ciri tersebut menunjukkan Melaka memiliki asas negara bangsa yang lengkap dan tersusun."
+      },
+      {
+        question: "Apakah nilai utama yang boleh dicontohi daripada warisan negara bangsa untuk masyarakat Malaysia kini?",
+        options: ["Ketaatan, tanggungjawab, perpaduan dan hormat kepada undang-undang", "Sikap mementingkan diri", "Mengabaikan sejarah", "Menolak identiti negara"],
+        answer: 0,
+        explanation: "Nilai yang diwarisi daripada sejarah dapat membantu membina masyarakat yang bersatu dan bertanggungjawab."
+      }
+    ];
+
+    const boardEl = document.getElementById("board");
+    const currentTurnEl = document.getElementById("currentTurn");
+    const lastDiceEl = document.getElementById("lastDice");
+    const player1PosEl = document.getElementById("player1Pos");
+    const player2PosEl = document.getElementById("player2Pos");
+    const player1ScoreEl = document.getElementById("player1Score");
+    const player2ScoreEl = document.getElementById("player2Score");
+    const statusBannerEl = document.getElementById("statusBanner");
+    const specialListEl = document.getElementById("specialList");
+    const startBtn = document.getElementById("startBtn");
+    const rulesBtn = document.getElementById("rulesBtn");
+    const rollBtn = document.getElementById("rollBtn");
+    const answerBtn = document.getElementById("answerBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const questionPlayerEl = document.getElementById("questionPlayer");
+    const questionCategoryEl = document.getElementById("questionCategory");
+    const questionPositionEl = document.getElementById("questionPosition");
+    const questionTextEl = document.getElementById("questionText");
+    const questionOptionsEl = document.getElementById("questionOptions");
+    const feedbackBoxEl = document.getElementById("feedbackBox");
+    const feedbackAnswerEl = document.getElementById("feedbackAnswer");
+    const feedbackExplanationEl = document.getElementById("feedbackExplanation");
+    const feedbackMovementEl = document.getElementById("feedbackMovement");
+    const feedbackCloseBtn = document.getElementById("feedbackCloseBtn");
+    const winnerTitleEl = document.getElementById("winnerTitle");
+    const winnerTextEl = document.getElementById("winnerText");
+    const winnerScoreEl = document.getElementById("winnerScore");
+    const winnerResetBtn = document.getElementById("winnerResetBtn");
+
+    const questionBanks = {
+      easy: easyQuestions,
+      medium: mediumQuestions,
+      hard: hardQuestions
+    };
+
+    const usedQuestionIds = {
+      easy: [],
+      medium: [],
+      hard: []
+    };
+
+    const gameState = {
+      started: false,
+      currentPlayer: 0,
+      lastDice: null,
+      isAnimating: false,
+      awaitingQuestion: false,
+      hasAnswered: false,
+      gameOver: false,
+      pendingCategory: null,
+      pendingQuestion: null,
+      specialEvent: null
+    };
+
+    function getTileClass(number) {
+      if (number === 1) return "easy";
+      if (number === BOARD_SIZE) return "hard";
+      if ([2, 5, 9, 13, 16, 17, 21, 25, 29, 31, 34, 38, 42, 45, 49, 53, 57, 61].includes(number)) return "neutral";
+      if (number <= 20) return "easy";
+      if (number <= 42) return "medium";
+      return "hard";
+    }
+
+    function getQuestionCategory(position) {
+      const explicitClass = getTileClass(position);
+      if (explicitClass === "easy" || explicitClass === "medium" || explicitClass === "hard") {
+        return explicitClass;
+      }
+      if (position <= 20) return "easy";
+      if (position <= 42) return "medium";
+      return "hard";
+    }
+
+    function createBoard() {
+      boardEl.innerHTML = "";
+      const boardNumbers = [];
+
+      for (let row = BOARD_DIMENSION - 1; row >= 0; row--) {
+        const rowStart = row * BOARD_DIMENSION + 1;
+        const rowNumbers = Array.from({ length: BOARD_DIMENSION }, (_, index) => rowStart + index);
+        if ((BOARD_DIMENSION - 1 - row) % 2 === 1) {
+          rowNumbers.reverse();
+        }
+        boardNumbers.push(...rowNumbers);
+      }
+
+      boardNumbers.forEach(number => {
+        const tile = document.createElement("div");
+        const tileClass = getTileClass(number);
+        tile.className = `tile ${tileClass}`;
+        tile.dataset.tile = number;
+
+        if (number === 1) tile.classList.add("start");
+        if (number === BOARD_SIZE) tile.classList.add("finish");
+
+        const special = specialTiles.find(item => item.start === number);
+        const label = number === 1 ? "START" : number === BOARD_SIZE ? "FINISH" : CATEGORY_EFFECTS[getQuestionCategory(number)].label;
+
+        tile.innerHTML = `
+          <div class="tile-number">${number}</div>
+          <div class="tile-label">${label}</div>
+          ${special ? `<div class="tile-special">${special.type === "snake" ? "Ular" : "Tangga"}: ${special.label}</div>` : ""}
+          <div class="tokens"></div>
+        `;
+
+        boardEl.appendChild(tile);
+      });
+
+      renderTokens();
+      renderSpecialList();
+    }
+
+    function renderSpecialList() {
+      specialListEl.innerHTML = "";
+      specialTiles.forEach(item => {
+        const badge = document.createElement("div");
+        badge.className = "special-badge";
+        badge.innerHTML = `
+          <span class="special-type ${item.type === "snake" ? "snake-type" : "ladder-type"}">${item.type === "snake" ? "Ular" : "Tangga"}</span>
+          <span>Petak ${item.start} ke ${item.end}: ${item.label}</span>
+        `;
+        specialListEl.appendChild(badge);
+      });
+    }
+
+    function renderTokens(activePlayer = null, movingPlayer = null) {
+      document.querySelectorAll(".tokens").forEach(el => {
+        el.innerHTML = "";
+      });
+
+      players.forEach((player, index) => {
+        const tile = document.querySelector(`[data-tile="${player.position}"] .tokens`);
+        if (!tile) return;
+
+        const token = document.createElement("div");
+        token.className = "token";
+        if (activePlayer === index) token.classList.add("active");
+        if (movingPlayer === index) token.classList.add("moving");
+        token.style.background = player.color;
+        token.textContent = index + 1;
+        token.title = `${player.name} di petak ${player.position}`;
+        tile.appendChild(token);
+      });
+    }
+
+    function updateInfoPanel(shouldRenderTokens = true) {
+      const currentPlayer = players[gameState.currentPlayer];
+      currentTurnEl.textContent = gameState.started && !gameState.gameOver ? currentPlayer.name : "Belum bermula";
+      lastDiceEl.textContent = gameState.lastDice ?? "-";
+      player1PosEl.textContent = `Petak ${players[0].position}`;
+      player2PosEl.textContent = `Petak ${players[1].position}`;
+      player1ScoreEl.textContent = `Markah: ${players[0].score}`;
+      player2ScoreEl.textContent = `Markah: ${players[1].score}`;
+
+      if (shouldRenderTokens) {
+        renderTokens(gameState.started && !gameState.gameOver ? gameState.currentPlayer : null, null);
+      }
+      updateButtons();
+    }
+
+    function updateStatus(message) {
+      statusBannerEl.textContent = message;
+    }
+
+    function updateButtons() {
+      rollBtn.disabled = !gameState.started || gameState.isAnimating || gameState.awaitingQuestion || gameState.hasAnswered || gameState.gameOver;
+      answerBtn.disabled = !gameState.awaitingQuestion || gameState.isAnimating || gameState.hasAnswered || gameState.gameOver;
+      nextBtn.disabled = !gameState.started || gameState.isAnimating || !gameState.hasAnswered || gameState.gameOver;
+    }
+
+    function resetQuestionTracking() {
+      Object.keys(usedQuestionIds).forEach(key => {
+        usedQuestionIds[key] = [];
+      });
+    }
+
+    function startGame() {
+      players.forEach(player => {
+        player.position = 1;
+        player.score = 0;
+      });
+
+      gameState.started = true;
+      gameState.currentPlayer = 0;
+      gameState.lastDice = null;
+      gameState.isAnimating = false;
+      gameState.awaitingQuestion = false;
+      gameState.hasAnswered = false;
+      gameState.gameOver = false;
+      gameState.pendingCategory = null;
+      gameState.pendingQuestion = null;
+      gameState.specialEvent = null;
+      resetQuestionTracking();
+      closeAllModals();
+      createBoard();
+      updateInfoPanel();
+      updateStatus("Permainan bermula. Giliran Pemain 1 untuk melontar dadu.");
+    }
+
+    function resetGame() {
+      gameState.started = false;
+      gameState.currentPlayer = 0;
+      gameState.lastDice = null;
+      gameState.isAnimating = false;
+      gameState.awaitingQuestion = false;
+      gameState.hasAnswered = false;
+      gameState.gameOver = false;
+      gameState.pendingCategory = null;
+      gameState.pendingQuestion = null;
+      gameState.specialEvent = null;
+      players.forEach(player => {
+        player.position = 1;
+        player.score = 0;
+      });
+      resetQuestionTracking();
+      closeAllModals();
+      createBoard();
+      updateInfoPanel();
+      updateStatus("Tekan “Mula Permainan” untuk memulakan cabaran warisan negara bangsa.");
+    }
+
+    function rollDice() {
+      if (!gameState.started || gameState.isAnimating || gameState.awaitingQuestion || gameState.hasAnswered || gameState.gameOver) return;
+
+      const currentIndex = gameState.currentPlayer;
+      const currentPlayer = players[currentIndex];
+      const dice = Math.floor(Math.random() * 6) + 1;
+      gameState.lastDice = dice;
+      gameState.isAnimating = true;
+      updateInfoPanel();
+      updateStatus(`${currentPlayer.name} memperoleh ${dice}. Token sedang bergerak.`);
+
+      movePlayer(currentIndex, dice, () => {
+        const winner = checkWinner();
+        if (winner) return;
+
+        resolveSpecialTile(() => {
+          const winnerAfterSpecial = checkWinner();
+          if (winnerAfterSpecial) return;
+
+          gameState.pendingCategory = getQuestionCategory(players[currentIndex].position);
+          gameState.isAnimating = false;
+          gameState.awaitingQuestion = true;
+          gameState.hasAnswered = false;
+          renderTokens(gameState.currentPlayer, null);
+          updateButtons();
+          updateStatus(`${currentPlayer.name} mendarat di petak ${players[currentIndex].position}. Tekan “Jawab Soalan”.`);
+        });
+      });
+    }
+
+    function movePlayer(playerIndex, steps, callback) {
+      const player = players[playerIndex];
+      const direction = steps >= 0 ? 1 : -1;
+      let remaining = Math.abs(steps);
+
+      if (remaining === 0) {
+        renderTokens(gameState.currentPlayer, null);
+        if (callback) callback();
+        return;
+      }
+
+      const interval = setInterval(() => {
+        if (remaining <= 0) {
+          clearInterval(interval);
+          renderTokens(gameState.currentPlayer, null);
+          if (callback) callback();
+          return;
+        }
+
+        player.position += direction;
+        if (player.position < 1) player.position = 1;
+        if (player.position > BOARD_SIZE) player.position = BOARD_SIZE;
+        remaining -= 1;
+        renderTokens(gameState.currentPlayer, playerIndex);
+        updateInfoPanel(false);
+
+        if (player.position === 1 || player.position === BOARD_SIZE) {
+          remaining = 0;
+        }
+      }, 230);
+    }
+
+    function resolveSpecialTile(callback) {
+      const player = players[gameState.currentPlayer];
+      const event = specialTiles.find(item => item.start === player.position);
+
+      if (!event) {
+        gameState.specialEvent = null;
+        if (callback) callback();
+        return;
+      }
+
+      gameState.specialEvent = event;
+      const travel = event.end - event.start;
+      gameState.isAnimating = true;
+      updateButtons();
+      updateStatus(`${player.name} terkena ${event.type === "snake" ? "ular sejarah" : "tangga warisan"}: ${event.label}.`);
+
+      setTimeout(() => {
+        movePlayer(gameState.currentPlayer, travel, () => {
+          updateStatus(`${player.name} kini berada di petak ${player.position} selepas ${event.type === "snake" ? "turun" : "naik"} kerana: ${event.label}.`);
+          if (callback) callback();
+        });
+      }, 500);
+    }
+
+    function getNextQuestion(category) {
+      const bank = questionBanks[category];
+      if (usedQuestionIds[category].length >= bank.length) {
+        usedQuestionIds[category] = [];
+      }
+
+      const availableIndexes = bank
+        .map((_, index) => index)
+        .filter(index => !usedQuestionIds[category].includes(index));
+
+      const randomIndex = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
+      usedQuestionIds[category].push(randomIndex);
+      return bank[randomIndex];
+    }
+
+    function openQuestionModal() {
+      if (!gameState.awaitingQuestion || gameState.gameOver) return;
+
+      const player = players[gameState.currentPlayer];
+      const category = gameState.pendingCategory || getQuestionCategory(player.position);
+      const question = gameState.pendingQuestion || getNextQuestion(category);
+      gameState.pendingQuestion = question;
+
+      questionPlayerEl.textContent = player.name;
+      questionCategoryEl.textContent = `Tahap: ${CATEGORY_EFFECTS[category].label}`;
+      questionPositionEl.textContent = `Petak: ${player.position}`;
+      questionTextEl.textContent = question.question;
+      questionOptionsEl.innerHTML = "";
+
+      question.options.forEach((option, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
+        btn.addEventListener("click", () => submitAnswer(index));
+        questionOptionsEl.appendChild(btn);
+      });
+
+      showModal("questionModal");
+    }
+
+    function submitAnswer(selectedIndex) {
+      if (!gameState.pendingQuestion || gameState.hasAnswered || gameState.gameOver) return;
+
+      const category = gameState.pendingCategory;
+      const isCorrect = selectedIndex === gameState.pendingQuestion.answer;
+      closeModal("questionModal");
+      applyQuestionOutcome(isCorrect, category);
+    }
+
+    function applyQuestionOutcome(isCorrect, category) {
+      const player = players[gameState.currentPlayer];
+      const effect = CATEGORY_EFFECTS[category];
+      const correctAnswer = gameState.pendingQuestion.options[gameState.pendingQuestion.answer];
+      const movement = isCorrect ? effect.bonus : -effect.penalty;
+
+      feedbackBoxEl.className = `feedback-box ${isCorrect ? "correct" : "wrong"}`;
+      feedbackBoxEl.innerHTML = `
+        <strong>${isCorrect ? "Betul" : "Salah"}</strong>
+        <p>${isCorrect ? "Tahniah, jawapan anda tepat." : "Jawapan yang dipilih kurang tepat."}</p>
+      `;
+      feedbackAnswerEl.innerHTML = `<strong>Jawapan sebenar:</strong> ${correctAnswer}`;
+      feedbackExplanationEl.innerHTML = `<strong>Penjelasan:</strong> ${gameState.pendingQuestion.explanation}`;
+      feedbackMovementEl.innerHTML = isCorrect
+        ? `<strong>Ganjaran:</strong> Maju ${effect.bonus} petak dan tambah ${effect.score} markah.`
+        : `<strong>Kesan:</strong> Undur ${effect.penalty} petak.`;
+
+      if (isCorrect) {
+        player.score += effect.score;
+      }
+
+      gameState.awaitingQuestion = false;
+      gameState.hasAnswered = true;
+      gameState.pendingQuestion = null;
+
+      showModal("feedbackModal");
+
+      feedbackCloseBtn.onclick = () => {
+        closeModal("feedbackModal");
+        gameState.isAnimating = true;
+        updateButtons();
+        movePlayer(gameState.currentPlayer, movement, () => {
+          gameState.isAnimating = false;
+          updateInfoPanel();
+          const winner = checkWinner();
+          if (winner) return;
+          renderTokens(gameState.currentPlayer, null);
+          updateStatus(`${player.name} selesai menjawab. Tekan “Seterusnya” untuk giliran pemain lain.`);
+          updateButtons();
+        });
+      };
+
+      updateButtons();
+    }
+
+    function endTurn() {
+      if (!gameState.started || !gameState.hasAnswered || gameState.gameOver) return;
+
+      gameState.currentPlayer = gameState.currentPlayer === 0 ? 1 : 0;
+      gameState.lastDice = null;
+      gameState.isAnimating = false;
+      gameState.hasAnswered = false;
+      gameState.awaitingQuestion = false;
+      gameState.pendingCategory = null;
+      gameState.pendingQuestion = null;
+      updateInfoPanel();
+      updateStatus(`Giliran ${players[gameState.currentPlayer].name}. Tekan “Lontar Dadu”.`);
+    }
+
+    function checkWinner() {
+      const player = players[gameState.currentPlayer];
+      if (player.position >= BOARD_SIZE) {
+        player.position = BOARD_SIZE;
+        gameState.gameOver = true;
+        gameState.isAnimating = false;
+        gameState.awaitingQuestion = false;
+        gameState.hasAnswered = false;
+        updateInfoPanel();
+        showWinner(player);
+        return true;
+      }
+      return false;
+    }
+
+    function showWinner(player) {
+      winnerTitleEl.textContent = `${player.name} Menang!`;
+      winnerTextEl.textContent = `${player.name} berjaya sampai ke FINISH sambil menguasai topik Warisan Negara Bangsa.`;
+      winnerScoreEl.textContent = `Markah akhir: ${player.score}`;
+      updateStatus(`${player.name} menang permainan.`);
+      showModal("winnerModal");
+    }
+
+    function showModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll(".modal").forEach(modal => {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+      });
+    }
+
+    document.querySelectorAll("[data-close]").forEach(button => {
+      button.addEventListener("click", event => {
+        const targetId = event.currentTarget.getAttribute("data-close");
+        closeModal(targetId);
+      });
+    });
+
+    startBtn.addEventListener("click", startGame);
+    rulesBtn.addEventListener("click", () => showModal("rulesModal"));
+    rollBtn.addEventListener("click", rollDice);
+    answerBtn.addEventListener("click", openQuestionModal);
+    nextBtn.addEventListener("click", endTurn);
+    resetBtn.addEventListener("click", resetGame);
+    winnerResetBtn.addEventListener("click", resetGame);
+
+    createBoard();
+    updateInfoPanel();
+  </script>
+</body>
+</html>
