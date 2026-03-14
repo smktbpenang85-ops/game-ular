@@ -3,1485 +3,791 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Ular Sejarah Tingkatan 4: Warisan Negara Bangsa</title>
+  <title>Misi Global Malaysia: Race to the Summit</title>
   <style>
     :root {
-      --bg: #0f0d0a;
-      --panel: rgba(33, 26, 18, 0.94);
-      --panel-soft: rgba(55, 42, 28, 0.78);
-      --gold: #d9b56d;
-      --gold-soft: #f3dd9c;
-      --line: rgba(232, 199, 123, 0.22);
-      --text: #f8f1df;
-      --muted: #c7b795;
-      --easy: #2f8f5b;
-      --medium: #2f66c7;
-      --hard: #d06a2c;
-      --neutral: #3c3228;
-      --player1: #e84f4f;
-      --player2: #4db5ff;
-      --danger: #d94d4d;
-      --success: #35a06c;
-      --shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
+      --bg-1: #fff6dc;
+      --bg-2: #d8f1ff;
+      --panel: rgba(255, 255, 255, 0.84);
+      --panel-strong: rgba(255, 255, 255, 0.94);
+      --text: #143044;
+      --muted: #547083;
+      --red: #ef5a5a;
+      --blue: #4f8df5;
+      --yellow: #f1bf2f;
+      --green: #42b777;
+      --purple: #9c5ff0;
+      --shadow: 0 18px 45px rgba(25, 57, 82, 0.16);
+      --player1: #ff5a5f;
+      --player2: #2f80ed;
+      --player3: #27ae60;
+      --player4: #9b51e0;
+      --malaysia-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23d9f1ff'/%3E%3Cstop offset='100%25' stop-color='%23fff6dc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='url(%23sky)'/%3E%3Cg opacity='0.13'%3E%3Cpath d='M176 458c36-48 88-72 156-72 32 0 64 8 102 24l52-20 60 16 38 40-10 42-42 12-44 34-42-22-88 16-68-12-54 16-38-34 8-40z' fill='%230c4a6e'/%3E%3Cpath d='M760 382l42-18 40 10 30-22 56 12 32 32 56 8 18 36-18 28-48 6-46 26-56-12-34 20-34-18-20-38-30-10-16-34 28-24z' fill='%230c4a6e'/%3E%3Ccircle cx='955' cy='484' r='12' fill='%230c4a6e'/%3E%3C/g%3E%3Cg opacity='0.18'%3E%3Crect x='0' y='0' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='48' width='1200' height='48' fill='%23ffffff'/%3E%3Crect x='0' y='96' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='144' width='1200' height='48' fill='%23ffffff'/%3E%3Crect x='0' y='192' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='240' width='1200' height='48' fill='%23ffffff'/%3E%3Crect x='0' y='288' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='336' width='1200' height='48' fill='%23ffffff'/%3E%3Crect x='0' y='384' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='432' width='1200' height='48' fill='%23ffffff'/%3E%3Crect x='0' y='480' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='528' width='1200' height='48' fill='%23ffffff'/%3E%3Crect x='0' y='576' width='1200' height='48' fill='%23c1121f'/%3E%3Crect x='0' y='624' width='1200' height='48' fill='%23ffffff'/%3E%3C/g%3E%3Cg opacity='0.22'%3E%3Crect x='0' y='0' width='360' height='280' fill='%230033a0'/%3E%3Cpath d='M138 98a54 54 0 1 0 0 108 60 60 0 1 1 0-108z' fill='%23f7c948'/%3E%3Cg fill='%23f7c948' transform='translate(206 146)'%3E%3Cpath d='M0-38l7.4 22.8h24L12 0l7.4 22.8L0 8-19.4 22.8-12 0-31.4-15.2h24z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
       font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top, rgba(175, 138, 76, 0.2), transparent 34%),
-        linear-gradient(180deg, rgba(15, 13, 10, 0.98), rgba(29, 22, 15, 0.98)),
-        repeating-linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.02) 0 10px,
-          rgba(0, 0, 0, 0.03) 10px 20px
-        );
+        var(--malaysia-bg),
+        radial-gradient(circle at top left, rgba(255, 163, 87, 0.35), transparent 30%),
+        radial-gradient(circle at top right, rgba(90, 174, 255, 0.26), transparent 26%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      background-size: cover, auto, auto, auto;
+      background-position: center center, top left, top right, center;
+      background-attachment: fixed;
     }
-
-    .container {
-      width: min(1380px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 24px 0 32px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.45fr 1fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-bottom: 20px;
-    }
-
-    .hero-card,
-    .toolbar,
-    .sidebar-card,
-    .board-wrapper,
-    .legend {
-      background: linear-gradient(180deg, rgba(45, 34, 22, 0.95), rgba(25, 19, 13, 0.98));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card {
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::after {
+    body::before {
       content: "";
-      position: absolute;
-      inset: auto -40px -70px auto;
-      width: 190px;
-      height: 190px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(217, 181, 109, 0.18), transparent 70%);
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 10px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(217, 181, 109, 0.12);
-      color: var(--gold-soft);
-      font-size: 0.88rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3vw, 3.1rem);
-      line-height: 1.1;
-      color: #fff3d3;
-    }
-
-    .hero p,
-    .sidebar-card p,
-    .modal-body p,
-    .status-note {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .toolbar {
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .button-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    button {
-      appearance: none;
-      border: none;
-      border-radius: 14px;
-      padding: 12px 14px;
-      font: inherit;
-      font-weight: 700;
-      color: #fff9eb;
-      cursor: pointer;
-      transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease;
-      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
-    }
-
-    button:hover:not(:disabled) {
-      transform: translateY(-1px);
-    }
-
-    button:disabled {
-      cursor: not-allowed;
-      opacity: 0.45;
-      box-shadow: none;
-    }
-
-    .btn-primary { background: linear-gradient(180deg, #b18439, #8f672b); }
-    .btn-secondary { background: linear-gradient(180deg, #355f99, #294775); }
-    .btn-success { background: linear-gradient(180deg, #328e5f, #246544); }
-    .btn-warning { background: linear-gradient(180deg, #b86c34, #8c4f23); }
-    .btn-danger { background: linear-gradient(180deg, #9f4444, #763131); }
-    .btn-ghost {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: none;
-    }
-
-    .main-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.38fr) minmax(320px, 0.9fr);
-      gap: 20px;
-      align-items: start;
-    }
-
-    .board-wrapper {
-      padding: 20px;
-    }
-
-    .board-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-
-    .board-header h2,
-    .sidebar-card h3,
-    .legend h3 {
-      margin: 0;
-      color: #fff1cb;
-    }
-
-    .board-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pill {
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--gold-soft);
-    }
-
-    .board {
-      display: grid;
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-      gap: 8px;
-      aspect-ratio: 1 / 1;
-      position: relative;
-    }
-
-    .tile {
-      position: relative;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 8px;
-      min-height: 82px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .tile:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.24);
-    }
-
-    .tile.easy { background: linear-gradient(180deg, rgba(47, 143, 91, 0.9), rgba(29, 78, 52, 0.96)); }
-    .tile.medium { background: linear-gradient(180deg, rgba(47, 102, 199, 0.9), rgba(28, 57, 110, 0.96)); }
-    .tile.hard { background: linear-gradient(180deg, rgba(208, 106, 44, 0.92), rgba(119, 58, 23, 0.98)); }
-    .tile.neutral { background: linear-gradient(180deg, rgba(60, 50, 40, 0.96), rgba(42, 34, 27, 0.98)); }
-    .tile.start,
-    .tile.finish {
-      outline: 2px solid rgba(255, 244, 189, 0.35);
-    }
-
-    .tile-number {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: rgba(255, 251, 238, 0.98);
-    }
-
-    .tile-label,
-    .tile-special {
-      font-size: 0.72rem;
-      line-height: 1.25;
-      color: rgba(255, 248, 233, 0.9);
-      max-width: 92%;
-    }
-
-    .tile-special {
-      padding: 4px 6px;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.18);
-      font-weight: 700;
-    }
-
-    .tokens {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      flex-wrap: wrap;
-      min-height: 26px;
-    }
-
-    .token {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.88);
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.14);
-      display: grid;
-      place-items: center;
-      color: #fff;
-      font-size: 0.72rem;
-      font-weight: 800;
-      transition: transform 0.22s ease, box-shadow 0.22s ease;
-    }
-
-    .token.active {
-      transform: scale(1.12);
-      box-shadow: 0 0 0 4px rgba(255, 240, 191, 0.22);
-    }
-
-    .token.moving {
-      animation: bounce 0.3s ease infinite alternate;
-    }
-
-    @keyframes bounce {
-      from { transform: translateY(0) scale(1); }
-      to { transform: translateY(-5px) scale(1.08); }
-    }
-
-    .sidebar {
-      display: grid;
-      gap: 16px;
-    }
-
-    .sidebar-card {
-      padding: 18px;
-    }
-
-    .status-grid,
-    .score-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .status-item,
-    .score-item,
-    .note-item,
-    .legend-item {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 14px;
-      padding: 12px;
-    }
-
-    .status-item span,
-    .score-item span {
-      display: block;
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .status-item strong,
-    .score-item strong {
-      font-size: 1.02rem;
-      color: #fff8e2;
-    }
-
-    .player-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-    }
-
-    .dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-    }
-
-    .legend {
-      padding: 16px;
-      margin-top: 16px;
-    }
-
-    .legend-list,
-    .note-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .legend-item,
-    .note-item {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .legend-swatch {
-      width: 18px;
-      height: 18px;
-      border-radius: 6px;
-      margin-top: 2px;
-      flex: none;
-    }
-
-    .note-item strong,
-    .legend-item strong {
-      display: block;
-      margin-bottom: 4px;
-      color: #fff0c5;
-    }
-
-    .special-list {
-      display: grid;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .special-badge {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      background: rgba(255, 255, 255, 0.04);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      font-size: 0.9rem;
-    }
-
-    .special-type {
-      min-width: 64px;
-      text-align: center;
-      padding: 4px 8px;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 800;
-    }
-
-    .snake-type { background: rgba(217, 77, 77, 0.16); color: #ffb9b9; }
-    .ladder-type { background: rgba(53, 160, 108, 0.16); color: #bdebd3; }
-
-    .status-banner {
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(217, 181, 109, 0.1);
-      border: 1px solid rgba(217, 181, 109, 0.2);
-      color: #ffecc4;
-      font-weight: 700;
-    }
-
-    .modal {
       position: fixed;
       inset: 0;
-      display: none;
-      place-items: center;
-      padding: 20px;
-      background: rgba(0, 0, 0, 0.72);
-      z-index: 20;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%) -20px 0 / 40px 40px,
+        linear-gradient(225deg, rgba(255, 255, 255, 0.14) 25%, transparent 25%) -20px 0 / 40px 40px;
+      opacity: 0.45;
     }
-
-    .modal.show {
+    .app {
+      position: relative;
+      width: min(1440px, calc(100% - 22px));
+      margin: 0 auto;
+      padding: 14px 0 18px;
       display: grid;
-      animation: fadeIn 0.18s ease;
+      gap: 14px;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal-card {
-      width: min(760px, 100%);
-      background: linear-gradient(180deg, rgba(40, 31, 21, 0.98), rgba(22, 17, 12, 1));
-      border-radius: 22px;
-      border: 1px solid var(--line);
+    .hero, .main { display: grid; gap: 14px; min-height: 0; }
+    .hero { grid-template-columns: minmax(0, 1.25fr) minmax(290px, 0.75fr); }
+    .main { grid-template-columns: minmax(0, 1.38fr) minmax(300px, 0.82fr); align-items: start; min-height: 0; }
+    .hero-card, .panel, .modal-card {
+      background: var(--panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
       box-shadow: var(--shadow);
-      overflow: hidden;
-      transform: translateY(0);
+      border-radius: 26px;
     }
-
-    .modal-header,
-    .modal-footer {
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.03);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .hero-card { padding: 20px 22px; position: relative; overflow: hidden; }
+    .hero-card::after {
+      content: ""; position: absolute; right: -70px; bottom: -85px; width: 230px; height: 230px;
+      border-radius: 50%; background: radial-gradient(circle, rgba(255, 202, 95, 0.55), rgba(255, 202, 95, 0));
     }
-
-    .modal-footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: none;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-      flex-wrap: wrap;
+    .kicker, .pill, .question-type {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px;
+      background: rgba(20, 48, 68, 0.08); color: #25506c; font-size: 0.84rem; font-weight: 800;
     }
-
-    .modal-header h3 {
-      margin: 0;
-      color: #fff0c5;
+    h1, h2, h3 { margin: 0; }
+    h1 { margin-top: 10px; font-size: clamp(1.8rem, 2.8vw, 3.1rem); line-height: 1.06; max-width: 13ch; }
+    p { color: var(--muted); line-height: 1.52; }
+    .hero-summary { max-width: 64ch; margin: 10px 0 0; font-size: 0.96rem; }
+    .setup-grid, .info-grid, .buttons, .legend-list, .score-list, .log-list, .answers, .match-list, .blitz-options {
+      display: grid; gap: 10px;
     }
-
-    .modal-body {
-      padding: 20px;
+    .setup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .info-grid, .buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mini-stat, .info-card, .legend-item, .score-item, .log-item, .match-item, .drop-zone, .memory-card, .blitz-option {
+      padding: 12px; border-radius: 16px; background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(20, 48, 68, 0.08);
     }
-
-    .question-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 16px;
+    .mini-stat strong, .info-card strong { display: block; font-size: 1.12rem; color: var(--text); }
+    .side-panel { display: flex; flex-direction: column; gap: 14px; min-height: 0; }
+    .controls, .legend, .status-log, .scoreboard, .board-panel { padding: 16px; min-height: 0; }
+    label { display: block; font-weight: 700; margin-bottom: 6px; font-size: 0.94rem; }
+    select, button { width: 100%; border: none; border-radius: 16px; font: inherit; }
+    select { padding: 11px 13px; background: rgba(255,255,255,0.95); border: 1px solid rgba(20,48,68,0.12); margin-bottom: 10px; }
+    button {
+      padding: 12px 14px; color: #fff; font-weight: 800; cursor: pointer;
+      transition: transform 0.16s ease, opacity 0.16s ease; box-shadow: 0 10px 18px rgba(37, 80, 108, 0.18);
     }
-
-    .question-text {
-      margin: 0 0 16px;
-      font-size: 1.16rem;
-      line-height: 1.55;
-      color: #fff8e3;
+    button:hover:not(:disabled) { transform: translateY(-2px); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+    .btn-start { background: linear-gradient(135deg, #ff8a3d, #ff5f6d); }
+    .btn-roll { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .btn-answer { background: linear-gradient(135deg, #19a974, #0d8f62); }
+    .btn-next { background: linear-gradient(135deg, #9c5ff0, #7f4fe0); }
+    .btn-reset { background: linear-gradient(135deg, #f97316, #ea580c); }
+    .btn-test { background: linear-gradient(135deg, #0f766e, #0ea5a4); }
+    .btn-music { background: linear-gradient(135deg, #ec4899, #db2777); }
+    .board-top, .modal-head, .blitz-top, .score-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .board-panel { display: flex; flex-direction: column; min-height: 0; }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .board { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 10px; }
+    .tile {
+      min-height: 92px; border-radius: 20px; padding: 10px; position: relative; overflow: hidden; color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2); transition: transform 0.18s ease;
     }
-
-    .options {
-      display: grid;
-      gap: 10px;
+    .tile.active { transform: translateY(-3px) scale(1.02); }
+    .tile-header { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+    .tile-number { font-size: 1rem; font-weight: 900; }
+    .tile small { font-size: 0.78rem; }
+    .tile p { color: rgba(255,255,255,0.9); font-size: 0.78rem; line-height: 1.28; margin: 0; }
+    .tile.red { background: linear-gradient(160deg, #ff7f7f, #db4e4e); }
+    .tile.blue { background: linear-gradient(160deg, #74a8ff, #4476e8); }
+    .tile.yellow { background: linear-gradient(160deg, #ffd966, #e4ac26); color: #523300; }
+    .tile.yellow p { color: rgba(82, 51, 0, 0.85); }
+    .tile.green { background: linear-gradient(160deg, #6fe2a2, #2ca968); }
+    .tile.purple { background: linear-gradient(160deg, #cb92ff, #9352df); }
+    .tile.start { background: linear-gradient(160deg, #4ecdc4, #1a8f94); }
+    .tile.finish { background: linear-gradient(160deg, #ffba49, #ff7a00); }
+    .tile.minigame { box-shadow: inset 0 0 0 2px rgba(255,255,255,0.55); }
+    .tokens { position: absolute; left: 10px; right: 10px; bottom: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .token {
+      width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.85);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.18); animation: tokenPulse 1.8s ease-in-out infinite;
     }
-
-    .option-btn {
-      text-align: left;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 14px;
-      border-radius: 14px;
+    .token.player1 { background: var(--player1); } .token.player2 { background: var(--player2); }
+    .token.player3 { background: var(--player3); } .token.player4 { background: var(--player4); }
+    @keyframes tokenPulse { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+    .swatch, .player-dot { width: 16px; height: 16px; border-radius: 50%; flex: 0 0 auto; }
+    .player-dot { width: 18px; height: 18px; }
+    .sw-red { background: var(--red); } .sw-blue { background: var(--blue); } .sw-yellow { background: var(--yellow); } .sw-green { background: var(--green); } .sw-purple { background: var(--purple); }
+    .score-head { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+    .score-meta { text-align: right; color: var(--muted); font-size: 0.92rem; }
+    .status-log { min-height: 220px; }
+    .log-list { max-height: 240px; overflow: auto; padding-right: 4px; }
+    .modal { position: fixed; inset: 0; background: rgba(11, 26, 38, 0.44); display: none; align-items: center; justify-content: center; padding: 18px; z-index: 30; }
+    .modal.open { display: flex; }
+    .modal-card { width: min(920px, 100%); max-height: min(92vh, 980px); overflow: auto; padding: 18px; background: var(--panel-strong); }
+    .category-label { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px; font-weight: 800; }
+    .answer-btn { text-align: left; background: #ffffff; color: var(--text); border: 1px solid rgba(20, 48, 68, 0.1); }
+    .answer-btn.selected { outline: 3px solid rgba(79, 141, 245, 0.25); }
+    .feedback { margin-top: 14px; padding: 14px; border-radius: 18px; background: rgba(20,48,68,0.06); display: none; }
+    .feedback.show { display: block; } .feedback.correct { background: rgba(27,177,105,0.13); } .feedback.wrong { background: rgba(239,90,90,0.12); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+    .modal-actions button { width: auto; min-width: 170px; }
+    .match-board { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+    .match-item { cursor: grab; font-weight: 700; }
+    .drop-zone { min-height: 62px; }
+    .drop-zone.over { outline: 3px dashed rgba(79,141,245,0.35); }
+    .memory-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+    .memory-card { aspect-ratio: 1 / 1; display: grid; place-items: center; font-weight: 800; cursor: pointer; background: linear-gradient(160deg, rgba(79,141,245,0.12), rgba(156,95,240,0.14)); color: var(--text); }
+    .memory-card.revealed, .memory-card.matched { background: #fff; }
+    .timer { padding: 8px 12px; border-radius: 999px; background: rgba(255,138,61,0.12); color: #a94b16; font-weight: 800; }
+    .blitz-option { color: var(--text); cursor: pointer; font-weight: 700; }
+    .footer-note { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+    @media (max-width: 1080px) {
+      body { min-height: 100vh; overflow-y: auto; }
+      .app { display: block; padding: 12px 0 18px; }
+      .hero, .main { grid-template-columns: 1fr; }
     }
-
-    .option-btn:hover:not(:disabled) {
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      background: rgba(255, 255, 255, 0.09);
-    }
-
-    .feedback-box {
-      padding: 14px;
-      border-radius: 16px;
-      margin-bottom: 16px;
-    }
-
-    .feedback-box.correct {
-      background: rgba(53, 160, 108, 0.15);
-      border: 1px solid rgba(53, 160, 108, 0.3);
-    }
-
-    .feedback-box.wrong {
-      background: rgba(217, 77, 77, 0.13);
-      border: 1px solid rgba(217, 77, 77, 0.28);
-    }
-
-    .winner-card {
-      text-align: center;
-    }
-
-    .winner-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      margin: 0 0 8px;
-      color: #fff0c5;
-    }
-
-    .winner-score {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(217, 181, 109, 0.14);
-      color: #ffe8b0;
-      font-weight: 800;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @media (max-width: 1120px) {
-      .hero,
-      .main-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .toolbar {
-        order: -1;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .container {
-        width: min(100% - 20px, 1380px);
-        padding-top: 14px;
-      }
-
-      .board-wrapper,
-      .sidebar-card,
-      .toolbar,
-      .hero-card {
-        padding: 16px;
-      }
-
-      .tile {
-        min-height: 68px;
-        padding: 6px;
-      }
-
-      .tile-number {
-        font-size: 0.78rem;
-      }
-
-      .tile-label,
-      .tile-special {
-        font-size: 0.62rem;
-      }
-
-      .status-grid,
-      .score-grid,
-      .button-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 760px) {
+      .app { width: min(100%, calc(100% - 18px)); }
+      .buttons, .info-grid, .setup-grid, .match-board { grid-template-columns: 1fr; }
+      .board { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .memory-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .tile { min-height: 114px; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="app">
     <section class="hero">
       <div class="hero-card">
-        <span class="eyebrow">Sejarah SPM Tingkatan 4</span>
-        <h1>Game Ular Sejarah Tingkatan 4: Warisan Negara Bangsa</h1>
-        <p>
-          Jelajah papan warisan dari START ke FINISH sambil menjawab soalan tentang negara bangsa,
-          kedaulatan, undang-undang, rakyat, dan Kesultanan Melayu Melaka.
-        </p>
-        <p class="status-note">
-          Konsep permainan: dua pemain, dadu, soalan mengikut tahap, ular sejarah yang menurunkan kedudukan,
-          dan tangga warisan yang menaikkan semangat serta ilmu.
-        </p>
-      </div>
-
-      <div class="toolbar">
-        <div class="button-grid">
-          <button id="startBtn" class="btn-primary">Mula Permainan</button>
-          <button id="rulesBtn" class="btn-ghost">Lihat Peraturan</button>
-          <button id="rollBtn" class="btn-secondary" disabled>Lontar Dadu</button>
-          <button id="answerBtn" class="btn-success" disabled>Jawab Soalan</button>
-          <button id="nextBtn" class="btn-warning" disabled>Seterusnya</button>
-          <button id="resetBtn" class="btn-danger">Main Semula</button>
-        </div>
-        <div class="status-banner" id="statusBanner">
-          Tekan “Mula Permainan” untuk memulakan cabaran warisan negara bangsa.
+        <div class="kicker">Sejarah Tingkatan 5 Bab 10</div>
+        <h1>Misi Global Malaysia: Race to the Summit</h1>
+        <p class="hero-summary">Permainan pendidikan interaktif bertema diplomasi antarabangsa. Pemain berlumba di atas papan 40 petak, menjawab kuiz, mencabar mini game, dan mengumpul markah untuk membuktikan kecemerlangan Malaysia di persada dunia.</p>
+        <div class="setup-grid">
+          <div class="mini-stat"><span>Bilangan pemain</span><strong id="heroPlayers">2 pemain</strong></div>
+          <div class="mini-stat"><span>Sasaran kemenangan</span><strong>80 markah / petak 40</strong></div>
+          <div class="mini-stat"><span>Mini game</span><strong>3 cabaran aktif</strong></div>
+          <div class="mini-stat"><span>Kemahiran diuji</span><strong>Fakta, aplikasi, padanan</strong></div>
         </div>
       </div>
-    </section>
-
-    <section class="main-layout">
-      <div>
-        <div class="board-wrapper">
-          <div class="board-header">
-            <h2>Papan Permainan 1 hingga 64</h2>
-            <div class="board-meta">
-              <span class="pill">START di petak 1</span>
-              <span class="pill">FINISH di petak 64</span>
-              <span class="pill">2 Pemain</span>
-            </div>
+      <div class="side-panel">
+        <div class="panel controls">
+          <h3>Kawalan Permainan</h3>
+          <label for="playerCount">Pilih 2 hingga 4 pemain</label>
+          <select id="playerCount"><option value="2">2 pemain</option><option value="3">3 pemain</option><option value="4">4 pemain</option></select>
+          <div class="buttons">
+            <button id="startBtn" class="btn-start">Mula</button>
+            <button id="rollBtn" class="btn-roll" disabled>Lontar Dadu</button>
+            <button id="answerBtn" class="btn-answer" disabled>Jawab</button>
+            <button id="nextBtn" class="btn-next" disabled>Seterusnya</button>
+            <button id="resetBtn" class="btn-reset">Main Semula</button>
+            <button id="testBtn" class="btn-test">Ujian Auto</button>
+            <button id="musicBtn" class="btn-music">Muzik: Off</button>
           </div>
-          <div id="board" class="board" aria-label="Papan permainan sejarah"></div>
+          <p class="footer-note">Jika jawapan betul, pemain mendapat +10 markah dan bonus maju 1 petak. Jika salah, pemain -5 markah dan undur 1 petak.</p>
         </div>
-
-        <div class="legend">
-          <h3>Petunjuk Papan</h3>
+        <div class="panel legend">
+          <h3>Legenda Kategori</h3>
           <div class="legend-list">
-            <div class="legend-item">
-              <span class="legend-swatch" style="background: var(--easy);"></span>
-              <div><strong>Hijau = Mudah</strong> Soalan asas tentang konsep utama negara bangsa.</div>
-            </div>
-            <div class="legend-item">
-              <span class="legend-swatch" style="background: var(--medium);"></span>
-              <div><strong>Biru = Sederhana</strong> Soalan aplikasi idea dan fungsi rakyat atau pemerintah.</div>
-            </div>
-            <div class="legend-item">
-              <span class="legend-swatch" style="background: var(--hard);"></span>
-              <div><strong>Jingga = Sukar</strong> Soalan KBAT dan huraian idea warisan negara bangsa.</div>
-            </div>
-            <div class="legend-item">
-              <span class="legend-swatch" style="background: var(--neutral);"></span>
-              <div><strong>Petak Neutral</strong> Mendarat di sini masih menerima soalan berdasarkan zon tahap papan.</div>
-            </div>
+            <div class="legend-item"><span class="swatch sw-red"></span>Merah: Isu Global</div>
+            <div class="legend-item"><span class="swatch sw-blue"></span>Biru: Diplomasi</div>
+            <div class="legend-item"><span class="swatch sw-yellow"></span>Kuning: Ekonomi</div>
+            <div class="legend-item"><span class="swatch sw-green"></span>Hijau: Alam Sekitar</div>
+            <div class="legend-item"><span class="swatch sw-purple"></span>Ungu: Kemanusiaan</div>
           </div>
         </div>
       </div>
-
-      <aside class="sidebar">
-        <div class="sidebar-card">
-          <h3>Panel Info Permainan</h3>
-          <div class="status-grid" style="margin-top: 12px;">
-            <div class="status-item">
-              <span>Giliran Semasa</span>
-              <strong id="currentTurn">Belum bermula</strong>
-            </div>
-            <div class="status-item">
-              <span>Dadu Terakhir</span>
-              <strong id="lastDice">-</strong>
-            </div>
+    </section>
+    <section class="main">
+      <div class="panel board-panel">
+        <div class="board-top"><h2>Papan Misi 40 Petak</h2><div class="pills"><div class="pill">Petak 8, 16, 24, 32: Mini game</div><div class="pill">Petak 40: Penamat</div></div></div>
+        <div id="board" class="board"></div>
+      </div>
+      <div class="side-panel">
+        <div class="panel scoreboard">
+          <h3>Panel Info</h3>
+          <div class="info-grid">
+            <div class="info-card"><span>Giliran</span><strong id="turnInfo">Belum bermula</strong></div>
+            <div class="info-card"><span>Nilai dadu</span><strong id="diceInfo">-</strong></div>
+            <div class="info-card"><span>Status</span><strong id="statusInfo">Sedia</strong></div>
+            <div class="info-card"><span>Pemimpin</span><strong id="leaderInfo">-</strong></div>
           </div>
-          <div class="score-grid" style="margin-top: 12px;">
-            <div class="score-item">
-              <span>Pemain 1</span>
-              <strong class="player-badge"><i class="dot" style="background: var(--player1);"></i><span id="player1Pos">Petak 1</span></strong>
-              <div class="status-note" id="player1Score">Markah: 0</div>
-            </div>
-            <div class="score-item">
-              <span>Pemain 2</span>
-              <strong class="player-badge"><i class="dot" style="background: var(--player2);"></i><span id="player2Pos">Petak 1</span></strong>
-              <div class="status-note" id="player2Score">Markah: 0</div>
-            </div>
-          </div>
+          <div id="scoreList" class="score-list"></div>
         </div>
-
-        <div class="sidebar-card">
-          <h3>Ular Sejarah dan Tangga Warisan</h3>
-          <div id="specialList" class="special-list"></div>
-        </div>
-
-        <div class="sidebar-card">
-          <h3>Nota Pembelajaran</h3>
-          <div class="note-list">
-            <div class="note-item">
-              <div>
-                <strong>Ciri Negara Bangsa</strong>
-                Pemerintah, rakyat, wilayah pengaruh, undang-undang dan lambang kebesaran saling melengkapi.
-              </div>
-            </div>
-            <div class="note-item">
-              <div>
-                <strong>Kedaulatan</strong>
-                Kedaulatan ialah kekuasaan tertinggi sesebuah kerajaan yang wajib dipertahankan.
-              </div>
-            </div>
-            <div class="note-item">
-              <div>
-                <strong>Kesultanan Melayu Melaka</strong>
-                Menjadi contoh penting sistem pemerintahan, undang-undang dan hubungan pemerintah-rakyat.
-              </div>
-            </div>
-            <div class="note-item">
-              <div>
-                <strong>Kepentingan Warisan</strong>
-                Warisan negara bangsa membentuk identiti, perpaduan, kestabilan dan penghormatan terhadap institusi negara.
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
+        <div class="panel status-log"><h3>Log Misi</h3><div id="logList" class="log-list"></div></div>
+      </div>
     </section>
   </div>
-
-  <div id="rulesModal" class="modal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Peraturan Permainan</h3>
-      </div>
-      <div class="modal-body">
-        <p>1. Tekan <strong>Mula Permainan</strong> untuk mengaktifkan giliran pemain 1.</p>
-        <p>2. Pemain melontar dadu dan token bergerak mengikut jumlah yang diperoleh.</p>
-        <p>3. Jika terkena ular sejarah, pemain turun; jika terkena tangga warisan, pemain naik.</p>
-        <p>4. Selepas pergerakan selesai, tekan <strong>Jawab Soalan</strong> untuk menjawab soalan mengikut kategori petak.</p>
-        <p>5. Jawapan betul menambah markah dan memberi bonus pergerakan; jawapan salah menyebabkan undur.</p>
-        <p>6. Tekan <strong>Seterusnya</strong> untuk menukar giliran. Pemain pertama sampai ke FINISH menang.</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-primary" data-close="rulesModal">Tutup</button>
-      </div>
-    </div>
-  </div>
-
   <div id="questionModal" class="modal" aria-hidden="true">
     <div class="modal-card">
-      <div class="modal-header">
-        <h3>Soalan Warisan Negara Bangsa</h3>
-      </div>
-      <div class="modal-body">
-        <div class="question-meta">
-          <span class="pill" id="questionPlayer"></span>
-          <span class="pill" id="questionCategory"></span>
-          <span class="pill" id="questionPosition"></span>
-        </div>
-        <p id="questionText" class="question-text"></p>
-        <div id="questionOptions" class="options"></div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-ghost" data-close="questionModal">Tutup</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="feedbackModal" class="modal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Keputusan Jawapan</h3>
-      </div>
-      <div class="modal-body">
-        <div id="feedbackBox" class="feedback-box"></div>
-        <p id="feedbackAnswer"></p>
-        <p id="feedbackExplanation"></p>
-        <p id="feedbackMovement"></p>
-      </div>
-      <div class="modal-footer">
-        <button id="feedbackCloseBtn" class="btn-primary">Teruskan</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="winnerModal" class="modal" aria-hidden="true">
-    <div class="modal-card">
-      <div class="modal-body winner-card">
-        <p class="eyebrow">Tahniah</p>
-        <h2 id="winnerTitle" class="winner-title"></h2>
-        <p id="winnerText"></p>
-        <div id="winnerScore" class="winner-score"></div>
-      </div>
-      <div class="modal-footer" style="justify-content: center;">
-        <button class="btn-primary" data-close="winnerModal">Tutup</button>
-        <button id="winnerResetBtn" class="btn-danger">Main Semula</button>
+      <div class="modal-head"><div><div id="questionCategory" class="category-label"></div><h2 id="questionTitle">Soalan</h2></div><div id="questionType" class="question-type">Objektif</div></div>
+      <p id="questionText"></p>
+      <div id="questionContent"></div>
+      <div id="feedbackBox" class="feedback"></div>
+      <div class="modal-actions">
+        <button id="modalNextBtn" type="button" class="btn-next" disabled>Seterusnya</button>
       </div>
     </div>
   </div>
   <script>
-    const BOARD_SIZE = 64;
-    const BOARD_DIMENSION = 8;
-    const CATEGORY_EFFECTS = {
-      easy: { bonus: 1, score: 1, penalty: 1, label: "Mudah" },
-      medium: { bonus: 2, score: 2, penalty: 2, label: "Sederhana" },
-      hard: { bonus: 3, score: 3, penalty: 3, label: "Sukar" }
+    const categoryConfig = {
+      isuGlobal: { label: "Isu Global", className: "red", colorLabel: "Merah" },
+      diplomasi: { label: "Diplomasi", className: "blue", colorLabel: "Biru" },
+      ekonomi: { label: "Ekonomi", className: "yellow", colorLabel: "Kuning" },
+      alamSekitar: { label: "Alam Sekitar", className: "green", colorLabel: "Hijau" },
+      kemanusiaan: { label: "Kemanusiaan", className: "purple", colorLabel: "Ungu" }
     };
-
-    const players = [
-      { name: "Pemain 1", color: "var(--player1)", position: 1, score: 0 },
-      { name: "Pemain 2", color: "var(--player2)", position: 1, score: 0 }
+    const boardLayout = ["start","isuGlobal","diplomasi","ekonomi","alamSekitar","kemanusiaan","isuGlobal","mini","diplomasi","ekonomi","alamSekitar","kemanusiaan","isuGlobal","diplomasi","ekonomi","mini","alamSekitar","kemanusiaan","isuGlobal","diplomasi","ekonomi","alamSekitar","kemanusiaan","mini","isuGlobal","diplomasi","ekonomi","alamSekitar","kemanusiaan","isuGlobal","diplomasi","mini","ekonomi","alamSekitar","kemanusiaan","isuGlobal","diplomasi","ekonomi","alamSekitar","finish"];
+    const tileDescriptions = { start: "Berlepas dari Kuala Lumpur untuk misi antarabangsa.", finish: "Summit global dicapai. Tamatkan misi dengan cemerlang.", mini: "Cabaran mini game khas untuk kutip bonus." };
+    const playersBase = [
+      { name: "Pemain 1", className: "player1" },
+      { name: "Pemain 2", className: "player2" },
+      { name: "Pemain 3", className: "player3" },
+      { name: "Pemain 4", className: "player4" }
     ];
-
-    const specialTiles = [
-      { start: 6, end: 18, label: "Pemerintah berwibawa", type: "ladder" },
-      { start: 19, end: 33, label: "Undang-undang dipatuhi", type: "ladder" },
-      { start: 37, end: 52, label: "Lambang kebesaran dihormati", type: "ladder" },
-      { start: 27, end: 14, label: "Rakyat tidak taat setia", type: "snake" },
-      { start: 41, end: 22, label: "Undang-undang diabaikan", type: "snake" },
-      { start: 58, end: 36, label: "Kedaulatan tergugat", type: "snake" }
-    ];
-
-    const easyQuestions = [
-      {
-        question: "Apakah maksud kedaulatan?",
-        options: ["Kekuasaan tertinggi sesebuah kerajaan", "Kawasan pertanian utama kerajaan", "Upacara pertabalan raja", "Perdagangan luar negeri"],
-        answer: 0,
-        explanation: "Kedaulatan merujuk kepada kuasa tertinggi sesebuah pemerintahan yang perlu dipertahankan."
-      },
-      {
-        question: "Siapakah ketua kerajaan dalam Kesultanan Melayu Melaka?",
-        options: ["Bendahara", "Sultan", "Temenggung", "Penghulu Bendahari"],
-        answer: 1,
-        explanation: "Sultan ialah ketua kerajaan dan menjadi tonggak pemerintahan Melaka."
-      },
-      {
-        question: "Apakah maksud wilayah pengaruh?",
-        options: ["Kawasan tempat undang-undang tidak berlaku", "Kawasan yang menerima dan mengiktiraf pemerintahan kerajaan", "Kawasan sawah padi milik rakyat", "Tempat menyimpan alat kebesaran"],
-        answer: 1,
-        explanation: "Wilayah pengaruh ialah kawasan yang berada di bawah kekuasaan dan pengaruh pemerintah."
-      },
-      {
-        question: "Pernyataan manakah benar tentang Hukum Kanun Melaka?",
-        options: ["Ia hanya digunakan dalam urusan laut", "Ia ialah undang-undang penting di Melaka", "Ia ditulis oleh pedagang asing", "Ia tidak berkaitan dengan pentadbiran"],
-        answer: 1,
-        explanation: "Hukum Kanun Melaka menjadi asas peraturan penting dalam pentadbiran dan kehidupan masyarakat."
-      },
-      {
-        question: "Apakah salah satu ciri negara bangsa kerajaan Alam Melayu?",
-        options: ["Pemerintah", "Mesin industri", "Pilihan raya umum", "Kilang moden"],
-        answer: 0,
-        explanation: "Pemerintah ialah salah satu ciri utama negara bangsa bersama rakyat, wilayah pengaruh dan undang-undang."
-      },
-      {
-        question: "Siapakah yang dimaksudkan dengan rakyat?",
-        options: ["Golongan pedagang asing sahaja", "Penduduk yang taat setia kepada pemerintah", "Hanya pembesar negeri", "Tentera upahan luar"],
-        answer: 1,
-        explanation: "Rakyat ialah penduduk yang berada di bawah pemerintahan dan menunjukkan taat setia kepada kerajaan."
-      },
-      {
-        question: "Apakah fungsi lambang kebesaran?",
-        options: ["Menggantikan undang-undang", "Menunjukkan identiti dan kedaulatan pemerintah", "Menjadi alat perdagangan", "Menentukan sempadan sungai"],
-        answer: 1,
-        explanation: "Lambang kebesaran seperti nobat dan cap mohor menggambarkan kewibawaan pemerintah."
-      },
-      {
-        question: "Apakah maksud undang-undang dalam konteks kerajaan Melayu?",
-        options: ["Cerita rakyat yang diwarisi", "Peraturan yang mengawal pentadbiran dan kehidupan masyarakat", "Lagu rasmi negeri", "Peta sempadan kerajaan"],
-        answer: 1,
-        explanation: "Undang-undang berperanan sebagai panduan untuk menjamin keamanan dan keadilan."
-      },
-      {
-        question: "Antara berikut, yang manakah termasuk lambang kebesaran diraja?",
-        options: ["Nobat", "Kapal dagang", "Sawah padi", "Gudang rempah"],
-        answer: 0,
-        explanation: "Nobat ialah antara lambang kebesaran yang berkait rapat dengan institusi diraja."
-      },
-      {
-        question: "Mengapakah warisan negara bangsa penting dipelajari?",
-        options: ["Supaya murid lupa sejarah", "Supaya rakyat mengenal identiti negara", "Untuk menghapuskan tradisi", "Untuk mengurangkan perpaduan"],
-        answer: 1,
-        explanation: "Pemahaman terhadap warisan negara bangsa membantu membina identiti dan semangat patriotik."
-      }
-    ];
-
-    const mediumQuestions = [
-      {
-        question: "Mengapakah undang-undang penting dalam sesebuah kerajaan?",
-        options: ["Untuk menambah hasil dagangan sahaja", "Untuk memastikan keamanan, keadilan dan ketertiban", "Untuk mengawal musim hujan", "Untuk memilih ketua kampung secara rawak"],
-        answer: 1,
-        explanation: "Undang-undang penting bagi mengekalkan ketertiban, melindungi rakyat dan mengukuhkan pemerintahan."
-      },
-      {
-        question: "Bagaimanakah rakyat membantu mengekalkan kedaulatan kerajaan?",
-        options: ["Melanggar arahan pemerintah", "Taat setia, mematuhi undang-undang dan mempertahankan negara", "Berpindah keluar tanpa sebab", "Menyebarkan fitnah terhadap kerajaan"],
-        answer: 1,
-        explanation: "Peranan rakyat sangat penting dalam mempertahankan kedaulatan melalui kesetiaan dan kepatuhan."
-      },
-      {
-        question: "Mengapa lambang kebesaran penting kepada pemerintah?",
-        options: ["Menunjukkan kuasa, keabsahan dan identiti kerajaan", "Menggantikan peranan rakyat", "Menentukan harga barang dagangan", "Mewujudkan persaingan antara wilayah"],
-        answer: 0,
-        explanation: "Lambang kebesaran mengukuhkan imej pemerintah dan menunjukkan keabsahan institusi diraja."
-      },
-      {
-        question: "Apakah peranan Bendahara dalam Kesultanan Melayu Melaka?",
-        options: ["Ketua tukang kapal", "Penasihat kanan sultan dan pengurus pentadbiran", "Hakim laut asing", "Pemungut cukai tunggal dari luar"],
-        answer: 1,
-        explanation: "Bendahara ialah pembesar utama yang membantu sultan dalam pentadbiran dan keselamatan kerajaan."
-      },
-      {
-        question: "Bagaimanakah wilayah pengaruh dapat melambangkan kekuatan kerajaan?",
-        options: ["Semakin luas pengaruh, semakin besar pengiktirafan terhadap pemerintahan", "Semakin kecil pengaruh, semakin kuat kerajaan", "Wilayah pengaruh tidak berkaitan dengan kerajaan", "Hanya dinilai melalui hasil sawah"],
-        answer: 0,
-        explanation: "Wilayah pengaruh yang luas menunjukkan kerajaan itu dihormati dan diiktiraf oleh kawasan lain."
-      },
-      {
-        question: "Apakah kesan pematuhan rakyat terhadap undang-undang?",
-        options: ["Mewujudkan keamanan dan kestabilan", "Meningkatkan jenayah", "Menjatuhkan kewibawaan pemerintah", "Menghapuskan adat istiadat"],
-        answer: 0,
-        explanation: "Apabila rakyat mematuhi undang-undang, kerajaan menjadi lebih aman dan teratur."
-      },
-      {
-        question: "Mengapakah sultan dianggap penting dalam negara bangsa Melaka?",
-        options: ["Sultan mengetuai pemerintahan dan menjaga kestabilan kerajaan", "Sultan hanya menjaga urusan hiburan", "Sultan tidak terlibat dalam pentadbiran", "Sultan dipilih oleh pedagang asing"],
-        answer: 0,
-        explanation: "Sultan menjadi pusat kuasa, lambang perpaduan dan pelindung kerajaan."
-      },
-      {
-        question: "Hukum Kanun Melaka dan Undang-Undang Laut Melaka menunjukkan bahawa Melaka mempunyai...",
-        options: ["Sistem perundangan yang tersusun", "Tanah jajahan yang sempit", "Rakyat yang tidak setia", "Pemerintahan yang lemah"],
-        answer: 0,
-        explanation: "Kedua-dua undang-undang ini membuktikan wujudnya sistem pemerintahan dan peraturan yang tersusun."
-      },
-      {
-        question: "Apakah hubungan antara pemerintah dengan rakyat dalam negara bangsa?",
-        options: ["Saling bergantung untuk mewujudkan kestabilan", "Tidak mempunyai kaitan", "Rakyat bebas tanpa sebarang tanggungjawab", "Pemerintah tidak memerlukan sokongan rakyat"],
-        answer: 0,
-        explanation: "Kerajaan stabil apabila pemerintah berwibawa dan rakyat pula taat setia serta bertanggungjawab."
-      },
-      {
-        question: "Mengapakah warisan negara bangsa perlu dipelihara oleh generasi muda?",
-        options: ["Supaya sejarah tidak diingati", "Supaya identiti negara dan semangat patriotik terus kukuh", "Supaya adat lama dilupakan", "Supaya rakyat tidak mengenal institusi negara"],
-        answer: 1,
-        explanation: "Pemeliharaan warisan membantu memastikan nilai, identiti dan semangat cintakan negara terus diwarisi."
-      }
-    ];
-
-    const hardQuestions = [
-      {
-        question: "Apakah kepentingan warisan negara bangsa dalam pembinaan identiti negara hari ini?",
-        options: ["Membantu rakyat memahami akar sejarah, identiti dan semangat patriotik", "Menjadikan rakyat kurang menghargai sejarah", "Menghapuskan institusi pemerintahan", "Mengurangkan perpaduan masyarakat"],
-        answer: 0,
-        explanation: "Warisan negara bangsa menjadi asas pembentukan identiti nasional dan memupuk rasa bangga terhadap negara."
-      },
-      {
-        question: "Apakah kesan jika rakyat tidak mematuhi undang-undang dalam sesebuah kerajaan?",
-        options: ["Keamanan bertambah baik", "Kestabilan tergugat dan kedaulatan boleh terancam", "Pentadbiran menjadi lebih tersusun", "Lambang kebesaran menjadi lebih dihormati"],
-        answer: 1,
-        explanation: "Ketidakpatuhan terhadap undang-undang membawa kepada huru-hara, kelemahan pentadbiran dan ancaman terhadap kedaulatan."
-      },
-      {
-        question: "Bandingkan peranan pemerintah dengan peranan rakyat dalam mengekalkan kestabilan kerajaan.",
-        options: ["Pemerintah memimpin dan menggubal dasar, rakyat menyokong dengan taat setia dan kepatuhan", "Pemerintah dan rakyat tidak mempunyai peranan", "Rakyat sahaja bertanggungjawab terhadap kestabilan", "Pemerintah hanya berperanan semasa peperangan"],
-        answer: 0,
-        explanation: "Kestabilan kerajaan memerlukan gabungan kepimpinan yang baik dan kerjasama rakyat."
-      },
-      {
-        question: "Mengapakah kewibawaan pemerintah penting untuk mempertahankan kedaulatan?",
-        options: ["Kerana ia membantu memperoleh kepercayaan rakyat dan mengukuhkan pentadbiran", "Kerana ia membolehkan undang-undang diabaikan", "Kerana ia menghapuskan peranan pembesar", "Kerana ia menjadikan rakyat bebas tanpa aturan"],
-        answer: 0,
-        explanation: "Pemerintah yang berwibawa dihormati rakyat dan mampu memelihara kestabilan serta keselamatan negara."
-      },
-      {
-        question: "Bagaimanakah undang-undang menyumbang kepada kegemilangan Kesultanan Melayu Melaka?",
-        options: ["Dengan mewujudkan aturan jelas dalam pentadbiran, perdagangan dan masyarakat", "Dengan mengurangkan kuasa sultan sepenuhnya", "Dengan menghapuskan hubungan luar", "Dengan menjadikan pelabuhan kurang selamat"],
-        answer: 0,
-        explanation: "Peraturan yang tersusun menjadikan Melaka pusat pemerintahan dan perdagangan yang dihormati."
-      },
-      {
-        question: "Apakah inferens terbaik tentang hubungan wilayah pengaruh dengan kedaulatan?",
-        options: ["Wilayah pengaruh yang diiktiraf menunjukkan kekuatan dan kedaulatan kerajaan", "Wilayah pengaruh tidak memberi kesan kepada kerajaan", "Kedaulatan wujud tanpa pemerintah", "Semakin luas wilayah, undang-undang tidak diperlukan"],
-        answer: 0,
-        explanation: "Pengiktirafan wilayah terhadap pemerintah menandakan kerajaan itu mempunyai kuasa dan kedaulatan."
-      },
-      {
-        question: "Mengapakah rakyat perlu menghormati lambang kebesaran negara dan institusi diraja?",
-        options: ["Kerana lambang itu mencerminkan identiti, maruah dan kesinambungan negara", "Kerana lambang itu hanya hiasan majlis", "Kerana lambang menggantikan undang-undang", "Kerana rakyat tidak perlu memahami maknanya"],
-        answer: 0,
-        explanation: "Penghormatan terhadap lambang kebesaran menunjukkan kesetiaan kepada negara dan institusi pemerintahan."
-      },
-      {
-        question: "Jika pemerintah lemah dan rakyat berpecah, apakah implikasi paling munasabah terhadap negara bangsa?",
-        options: ["Kedaulatan kukuh secara automatik", "Kerajaan menjadi lebih stabil tanpa usaha", "Kestabilan merosot dan kerajaan mudah terancam", "Undang-undang menjadi tidak perlu"],
-        answer: 2,
-        explanation: "Negara bangsa memerlukan pemerintah yang berwibawa dan rakyat yang bersatu untuk kekal stabil."
-      },
-      {
-        question: "Antara berikut, manakah hujah terbaik untuk menyatakan Kesultanan Melayu Melaka mempunyai ciri negara bangsa yang jelas?",
-        options: ["Mempunyai pemerintah, rakyat, wilayah pengaruh, undang-undang dan lambang kebesaran", "Hanya terkenal sebagai pusat hiburan", "Tidak mempunyai sistem pentadbiran", "Tidak menekankan hubungan pemerintah dengan rakyat"],
-        answer: 0,
-        explanation: "Ciri-ciri tersebut menunjukkan Melaka memiliki asas negara bangsa yang lengkap dan tersusun."
-      },
-      {
-        question: "Apakah nilai utama yang boleh dicontohi daripada warisan negara bangsa untuk masyarakat Malaysia kini?",
-        options: ["Ketaatan, tanggungjawab, perpaduan dan hormat kepada undang-undang", "Sikap mementingkan diri", "Mengabaikan sejarah", "Menolak identiti negara"],
-        answer: 0,
-        explanation: "Nilai yang diwarisi daripada sejarah dapat membantu membina masyarakat yang bersatu dan bertanggungjawab."
-      }
-    ];
-
+    const questionBank = {
+      isuGlobal: [
+        { type: "objective", question: "Apakah yang dimaksudkan dengan isu global kontemporari?", options: ["Isu tempatan yang hanya melibatkan sebuah daerah", "Cabaran semasa yang memberi kesan merentas sempadan negara", "Masalah sekolah yang diselesaikan oleh PIBG", "Perkara budaya yang hanya dibincang di media sosial"], answer: 1, explanation: "Isu global kontemporari melibatkan banyak negara dan memerlukan kerjasama antarabangsa." },
+        { type: "truefalse", question: "Penyalahgunaan dadah dianggap isu global kerana rangkaian pengedaran boleh merentasi banyak negara.", answer: true, explanation: "Perdagangan dan penyalahgunaan dadah melibatkan sindiket antarabangsa dan ancaman keselamatan sejagat." },
+        { type: "objective", question: "Apakah peranan utama INTERPOL dalam konteks keselamatan global?", options: ["Mengurus pertanian negara anggota", "Menyelaras kerjasama polis antarabangsa", "Menyediakan biasiswa antarabangsa", "Menetapkan kadar mata wang dunia"], answer: 1, explanation: "INTERPOL membantu perkongsian maklumat, siasatan dan kerjasama polis antara negara." },
+        { type: "objective", question: "Malaysia perlu bekerjasama dengan negara lain untuk membanteras perdagangan orang kerana...", options: ["isu ini hanya berlaku di laut", "mangsa dan sindiket bergerak merentas sempadan", "semua kes hanya melibatkan pelajar sekolah", "undang-undang negara lain tidak diperlukan"], answer: 1, explanation: "Perdagangan orang ialah jenayah rentas sempadan, jadi tindakan bersepadu diperlukan." },
+        { type: "objective", question: "Pihak manakah yang berkait rapat dengan IDEC dalam usaha mengekang penyalahgunaan dadah?", options: ["Kerjasama serantau untuk perkongsian maklumat dan tindakan antidadah", "Pertubuhan sukan antarabangsa", "Agensi penggalakan seni budaya", "Persatuan peniaga kecil"], answer: 0, explanation: "IDEC dikaitkan dengan kerjasama membanteras dadah melalui penyelarasan maklumat dan tindakan." },
+        { type: "scenario", question: "Satu negara jiran meminta Malaysia berkongsi data sindiket dadah rentas sempadan. Tindakan paling tepat ialah...", options: ["Merahsiakan semua maklumat walaupun ancaman meningkat", "Bekerjasama melalui saluran keselamatan rasmi dan badan serantau", "Menunggu isu selesai sendiri", "Hanya mengeluarkan kenyataan media tanpa tindakan"], answer: 1, explanation: "Kerjasama rasmi mempercepat tindakan penguatkuasaan dan melindungi kepentingan negara." },
+        { type: "objective", question: "Kes Batu Puteh, Sipadan dan Ligitan menunjukkan Malaysia perlu mengurus isu global melalui...", options: ["keganasan", "diplomasi dan perundangan antarabangsa", "boikot kebudayaan", "persaingan sukan"], answer: 1, explanation: "Malaysia menekankan penyelesaian aman berasaskan diplomasi dan mahkamah antarabangsa." }
+      ],
+      diplomasi: [
+        { type: "objective", question: "Batu Puteh menjadi isu diplomasi antara Malaysia dengan...", options: ["Thailand", "Singapura", "Indonesia", "Brunei"], answer: 1, explanation: "Isu Batu Puteh melibatkan pertikaian antara Malaysia dan Singapura." },
+        { type: "objective", question: "Sipadan dan Ligitan dikaitkan dengan pertikaian antara Malaysia dan...", options: ["Filipina", "Vietnam", "Indonesia", "Kemboja"], answer: 2, explanation: "Sipadan dan Ligitan diputuskan melalui Mahkamah Antarabangsa melibatkan Malaysia dan Indonesia." },
+        { type: "truefalse", question: "Pendekatan diplomasi membolehkan pertikaian wilayah diselesaikan secara aman.", answer: true, explanation: "Diplomasi dan saluran undang-undang membantu mengelakkan konflik terbuka." },
+        { type: "objective", question: "Kepulauan Spratly penting dalam diplomasi serantau kerana...", options: ["menjadi pusat sukan SEA", "melibatkan tuntutan beberapa negara di Laut China Selatan", "hanya digunakan untuk pelancongan", "terletak di Selat Melaka"], answer: 1, explanation: "Spratly ialah isu sensitif kerana tuntutan bertindih beberapa negara." },
+        { type: "scenario", question: "Jika berlaku pertikaian sempadan maritim, tindakan paling sesuai menurut prinsip Malaysia ialah...", options: ["menggunakan provokasi tentera segera", "merujuk rundingan, ASEAN dan saluran undang-undang", "menghentikan hubungan rakyat dengan negara jiran", "mengabaikan bukti sejarah"], answer: 1, explanation: "Malaysia cenderung menyelesaikan pertikaian melalui rundingan dan platform antarabangsa." },
+        { type: "objective", question: "Zon Bebas Nuklear Asia Tenggara mencerminkan komitmen diplomasi Malaysia terhadap...", options: ["persaingan senjata", "keamanan serantau", "eksploitasi sumber laut", "monopoli perdagangan"], answer: 1, explanation: "Malaysia menyokong rantau yang aman dan bebas ancaman senjata nuklear." }
+      ],
+      ekonomi: [
+        { type: "objective", question: "AFTA ialah singkatan bagi...", options: ["ASEAN Free Trade Area", "Asian Financial Trade Association", "Alliance for Fiscal Trade in Asia", "Asean Fund and Trade Agency"], answer: 0, explanation: "AFTA bertujuan memudahkan perdagangan bebas dalam kalangan negara ASEAN." },
+        { type: "objective", question: "IMT-GT merujuk kepada kerjasama ekonomi subwilayah antara Indonesia, Malaysia dan...", options: ["Thailand", "Timor Leste", "Taiwan", "Turkiye"], answer: 0, explanation: "IMT-GT ialah Indonesia-Malaysia-Thailand Growth Triangle." },
+        { type: "objective", question: "SIJORI-GT menghubungkan Singapura, Johor dan...", options: ["Riau", "Sabah", "Sarawak", "Sulawesi"], answer: 0, explanation: "SIJORI-GT ialah Singapura-Johor-Riau Growth Triangle." },
+        { type: "objective", question: "BIMP-EAGA membantu menggiatkan pembangunan kawasan pinggir dengan kerjasama Brunei, Indonesia, Malaysia dan...", options: ["Papua New Guinea", "Filipina", "Vietnam", "Laos"], answer: 1, explanation: "BIMP-EAGA turut melibatkan Filipina bagi pembangunan subwilayah." },
+        { type: "objective", question: "Semasa kemelesetan ekonomi 1990-an, antara cabaran utama yang dihadapi Malaysia ialah...", options: ["lebihan bekalan minyak wangi", "serangan spekulasi mata wang", "kekurangan guru sejarah", "kejatuhan hasil tanaman padi sahaja"], answer: 1, explanation: "Krisis kewangan Asia menyaksikan spekulasi mata wang yang memberi tekanan kepada ekonomi." },
+        { type: "objective", question: "Langkah tambatan RM3.80 bagi USD1 diperkenalkan untuk...", options: ["melemahkan sepenuhnya perdagangan serantau", "menstabilkan nilai ringgit dan pasaran", "menghapuskan penggunaan wang tunai", "menggalakkan pelaburan emas sahaja"], answer: 1, explanation: "Tambatan nilai ringgit bertujuan mengekang ketidaktentuan dan menstabilkan ekonomi." },
+        { type: "truefalse", question: "Kempen antiminyak sawit memberi kesan kepada perdagangan dan imej ekonomi Malaysia.", answer: true, explanation: "Malaysia perlu mempertahankan industri sawit melalui diplomasi ekonomi dan fakta saintifik." }
+      ],
+      alamSekitar: [
+        { type: "objective", question: "Deklarasi Langkawi berkait rapat dengan usaha memelihara...", options: ["keselamatan siber", "alam sekitar dunia", "budaya pop Asia", "sistem pilihan raya"], answer: 1, explanation: "Deklarasi Langkawi menonjolkan komitmen Malaysia terhadap pemeliharaan alam sekitar global." },
+        { type: "objective", question: "Anugerah Langkawi diperkenalkan untuk mengiktiraf...", options: ["pemain sukan terkenal", "sumbangan dalam pemuliharaan alam sekitar", "pelabur asing terbesar", "penghasilan filem sejarah"], answer: 1, explanation: "Anugerah Langkawi mengiktiraf usaha dan inovasi dalam pemeliharaan alam sekitar." },
+        { type: "objective", question: "Isu jerebu memerlukan tindakan bersama negara serantau kerana...", options: ["ia hanya berlaku di dalam kelas", "kesannya melangkaui sempadan negara", "ia tidak menjejaskan kesihatan", "ia berpunca daripada ais di Antartika"], answer: 1, explanation: "Jerebu memberi kesan rentas sempadan dan perlu ditangani secara kolektif." },
+        { type: "truefalse", question: "NGO pencinta alam membantu meningkatkan kesedaran masyarakat tentang kelestarian alam sekitar.", answer: true, explanation: "NGO memainkan peranan penting dalam advokasi, pendidikan dan pemantauan alam sekitar." },
+        { type: "objective", question: "Penyertaan Malaysia dalam penyelidikan Antartika menunjukkan negara kita...", options: ["mengabaikan sains global", "turut menyumbang kepada ilmu dan pemeliharaan sejagat", "hanya fokus pada pelancongan ais", "menutup kerjasama dengan universiti"], answer: 1, explanation: "Penglibatan di Antartika mencerminkan komitmen sains, penyelidikan dan alam sekitar global." },
+        { type: "scenario", question: "Jika berlaku kempen antiminyak sawit yang tidak berasaskan fakta, tindakan paling baik ialah...", options: ["membalas dengan maklumat saintifik dan diplomasi berhemah", "menghentikan semua eksport serta-merta", "tidak memberi sebarang respons", "menghapuskan semua ladang tanpa perancangan"], answer: 0, explanation: "Malaysia perlu mempertahankan industri sawit secara profesional dengan data dan dasar lestari." }
+      ],
+      kemanusiaan: [
+        { type: "objective", question: "Sokongan Malaysia terhadap Palestin mencerminkan prinsip...", options: ["mengutamakan hiburan", "keprihatinan kemanusiaan dan keadilan", "penutupan sempadan mutlak", "persaingan perdagangan"], answer: 1, explanation: "Malaysia konsisten menyuarakan sokongan terhadap perjuangan kemanusiaan Palestin." },
+        { type: "objective", question: "Bantuan kepada rakyat Syria menunjukkan peranan Malaysia dalam...", options: ["isu kebudayaan sahaja", "misi kemanusiaan antarabangsa", "peluasan wilayah", "pertandingan ekonomi"], answer: 1, explanation: "Malaysia terlibat dalam bantuan kemanusiaan kepada mangsa konflik." },
+        { type: "objective", question: "Aceh dan Sri Lanka dikaitkan dengan sumbangan Malaysia dalam bidang...", options: ["fesyen antarabangsa", "bantuan kemanusiaan dan keamanan", "perlumbaan teknologi", "sukan musim sejuk"], answer: 1, explanation: "Malaysia menyumbang dalam misi kemanusiaan dan usaha perdamaian." },
+        { type: "truefalse", question: "Penularan AIDS turut dianggap isu kemanusiaan kerana menjejaskan kesejahteraan masyarakat global.", answer: true, explanation: "AIDS memberi kesan besar kepada kesihatan awam, keluarga dan pembangunan sosial." },
+        { type: "scenario", question: "Selepas bencana besar di negara jiran, apakah tindakan yang sejajar dengan imej Malaysia di persada dunia?", options: ["Menghulur bantuan kemanusiaan melalui saluran rasmi", "Mengabaikan mangsa kerana bukan rakyat sendiri", "Menunggu negara lain bertindak dahulu", "Hanya berbincang tanpa bantuan sebenar"], answer: 0, explanation: "Malaysia dikenali prihatin dan bersedia memberi bantuan bencana serta kemanusiaan." },
+        { type: "objective", question: "Perdagangan orang menuntut tindakan kemanusiaan kerana...", options: ["ia meningkatkan kesenian serantau", "mangsa dieksploitasi dan hak asasi dicabul", "isu ini sekadar salah faham", "semua mangsa bergerak secara sukarela"], answer: 1, explanation: "Perdagangan orang menjejaskan maruah, keselamatan dan hak asasi manusia." }
+      ],
+      mixed: [
+        { type: "matching", category: "diplomasi", question: "Padankan isu dengan fakta yang tepat.", prompt: "Seret istilah di sebelah kiri ke kotak padanan yang betul.", pairs: [{ term: "Batu Puteh", match: "Pertikaian Malaysia-Singapura" }, { term: "Sipadan dan Ligitan", match: "Pertikaian Malaysia-Indonesia" }, { term: "Spratly", match: "Tuntutan bertindih Laut China Selatan" }], explanation: "Padanan ini menegaskan kepentingan diplomasi dan saluran undang-undang antarabangsa." },
+        { type: "matching", category: "ekonomi", question: "Padankan singkatan ekonomi dengan maksudnya.", prompt: "Seret singkatan ke penerangan yang sepadan.", pairs: [{ term: "AFTA", match: "Kawasan perdagangan bebas ASEAN" }, { term: "IMT-GT", match: "Segi Tiga Pertumbuhan Indonesia-Malaysia-Thailand" }, { term: "BIMP-EAGA", match: "Kerjasama pembangunan Brunei-Indonesia-Malaysia-Filipina" }], explanation: "Singkatan ini penting untuk memahami kerjasama ekonomi serantau Malaysia." },
+        { type: "memory", category: "alamSekitar", question: "Buka kad dan cari 4 pasangan istilah alam sekitar yang sama.", prompt: "Padankan semua pasangan sebelum tamat.", pairs: ["Jerebu", "Antartika", "Langkawi", "NGO Alam"], explanation: "Istilah ini mengingatkan peranan Malaysia dalam diplomasi alam sekitar dan penyelidikan." },
+        { type: "memory", category: "kemanusiaan", question: "Cari pasangan kad berkaitan misi kemanusiaan Malaysia.", prompt: "Setiap pasangan mewakili fokus bantuan Malaysia.", pairs: ["Palestin", "Syria", "Aceh", "Sri Lanka"], explanation: "Bantuan Malaysia kepada wilayah ini mencerminkan keprihatinan sejagat." },
+        { type: "blitz", category: "isuGlobal", question: "Jawab sebanyak mungkin soalan blitz dalam 30 saat.", prompt: "Setiap jawapan betul memberikan bonus markah mini game.", explanation: "Blitz quiz menguji ingatan pantas terhadap fakta sejarah.", rounds: [{ question: "INTERPOL ialah organisasi kerjasama...", options: ["polis antarabangsa", "pelancongan", "kesenian", "sukan"], answer: 0 }, { question: "Tambatan RM3.80 bagi USD1 berkait dengan...", options: ["pendidikan", "penstabilan ekonomi", "bahasa", "jerebu"], answer: 1 }, { question: "Deklarasi Langkawi berkait dengan...", options: ["alam sekitar", "hiburan", "perkapalan", "angkasawan"], answer: 0 }, { question: "AFTA fokus kepada...", options: ["dagangan bebas", "bantuan banjir", "mahkamah", "penerbangan"], answer: 0 }, { question: "Palestin melambangkan sokongan Malaysia terhadap isu...", options: ["fesyen", "kemanusiaan", "pelancongan", "sukan"], answer: 1 }] },
+        { type: "blitz", category: "diplomasi", question: "Blitz diplomasi 30 saat.", prompt: "Pilih jawapan pantas dan tepat.", explanation: "Cabaran ini menguji kefahaman tentang peranan diplomasi Malaysia.", rounds: [{ question: "Batu Puteh melibatkan Malaysia dan...", options: ["Vietnam", "Singapura", "Laos", "Myanmar"], answer: 1 }, { question: "Spratly terletak di...", options: ["Laut China Selatan", "Laut Sulu", "Selat Melaka", "Laut Jawa"], answer: 0 }, { question: "Zon bebas nuklear Asia Tenggara melambangkan...", options: ["keamanan serantau", "perang dingin", "spekulasi mata wang", "pertanian moden"], answer: 0 }, { question: "Sipadan dan Ligitan diputuskan melalui...", options: ["perlawanan debat", "Mahkamah Antarabangsa", "sukan SEA", "pilihan raya"], answer: 1 }, { question: "Pendekatan terbaik dalam pertikaian wilayah ialah...", options: ["diplomasi", "provokasi", "boikot", "diam"], answer: 0 }] }
+      ]
+    };
+    const gameState = { players: [], currentPlayerIndex: 0, started: false, awaitingQuestion: false, awaitingNext: false, currentQuestion: null, currentCategory: null, selectedAnswer: null, winner: null, log: [], usedQuestions: {}, blitzTimer: null, blitzEndTime: 0, blitzScore: 0, blitzRoundIndex: 0 };
     const boardEl = document.getElementById("board");
-    const currentTurnEl = document.getElementById("currentTurn");
-    const lastDiceEl = document.getElementById("lastDice");
-    const player1PosEl = document.getElementById("player1Pos");
-    const player2PosEl = document.getElementById("player2Pos");
-    const player1ScoreEl = document.getElementById("player1Score");
-    const player2ScoreEl = document.getElementById("player2Score");
-    const statusBannerEl = document.getElementById("statusBanner");
-    const specialListEl = document.getElementById("specialList");
+    const scoreListEl = document.getElementById("scoreList");
+    const logListEl = document.getElementById("logList");
+    const turnInfoEl = document.getElementById("turnInfo");
+    const diceInfoEl = document.getElementById("diceInfo");
+    const statusInfoEl = document.getElementById("statusInfo");
+    const leaderInfoEl = document.getElementById("leaderInfo");
+    const heroPlayersEl = document.getElementById("heroPlayers");
+    const playerCountEl = document.getElementById("playerCount");
+    const questionModalEl = document.getElementById("questionModal");
+    const questionCategoryEl = document.getElementById("questionCategory");
+    const questionTitleEl = document.getElementById("questionTitle");
+    const questionTypeEl = document.getElementById("questionType");
+    const questionTextEl = document.getElementById("questionText");
+    const questionContentEl = document.getElementById("questionContent");
+    const feedbackBoxEl = document.getElementById("feedbackBox");
     const startBtn = document.getElementById("startBtn");
-    const rulesBtn = document.getElementById("rulesBtn");
     const rollBtn = document.getElementById("rollBtn");
     const answerBtn = document.getElementById("answerBtn");
     const nextBtn = document.getElementById("nextBtn");
     const resetBtn = document.getElementById("resetBtn");
-    const questionPlayerEl = document.getElementById("questionPlayer");
-    const questionCategoryEl = document.getElementById("questionCategory");
-    const questionPositionEl = document.getElementById("questionPosition");
-    const questionTextEl = document.getElementById("questionText");
-    const questionOptionsEl = document.getElementById("questionOptions");
-    const feedbackBoxEl = document.getElementById("feedbackBox");
-    const feedbackAnswerEl = document.getElementById("feedbackAnswer");
-    const feedbackExplanationEl = document.getElementById("feedbackExplanation");
-    const feedbackMovementEl = document.getElementById("feedbackMovement");
-    const feedbackCloseBtn = document.getElementById("feedbackCloseBtn");
-    const winnerTitleEl = document.getElementById("winnerTitle");
-    const winnerTextEl = document.getElementById("winnerText");
-    const winnerScoreEl = document.getElementById("winnerScore");
-    const winnerResetBtn = document.getElementById("winnerResetBtn");
-
-    const questionBanks = {
-      easy: easyQuestions,
-      medium: mediumQuestions,
-      hard: hardQuestions
-    };
-
-    const usedQuestionIds = {
-      easy: [],
-      medium: [],
-      hard: []
-    };
-
-    const gameState = {
-      started: false,
-      currentPlayer: 0,
-      lastDice: null,
-      isAnimating: false,
-      awaitingQuestion: false,
-      hasAnswered: false,
-      gameOver: false,
-      pendingCategory: null,
-      pendingQuestion: null,
-      specialEvent: null
-    };
-
-    function getTileClass(number) {
-      if (number === 1) return "easy";
-      if (number === BOARD_SIZE) return "hard";
-      if ([2, 5, 9, 13, 16, 17, 21, 25, 29, 31, 34, 38, 42, 45, 49, 53, 57, 61].includes(number)) return "neutral";
-      if (number <= 20) return "easy";
-      if (number <= 42) return "medium";
-      return "hard";
+    const testBtn = document.getElementById("testBtn");
+    const musicBtn = document.getElementById("musicBtn");
+    const modalNextBtn = document.getElementById("modalNextBtn");
+    let audioContext = null;
+    let musicMasterGain = null;
+    let musicPulseGain = null;
+    let musicInterval = null;
+    let musicEnabled = false;
+    let musicStep = 0;
+    function shuffle(array) { const copy = [...array]; for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; } return copy; }
+    function getSwatchClass(className) { return className === "red" ? "sw-red" : className === "blue" ? "sw-blue" : className === "yellow" ? "sw-yellow" : className === "green" ? "sw-green" : "sw-purple"; }
+    function getPlayerColor(playerClass) { return getComputedStyle(document.documentElement).getPropertyValue(`--${playerClass}`).trim(); }
+    function updateMusicButton() {
+      musicBtn.textContent = `Muzik: ${musicEnabled ? "On" : "Off"}`;
     }
-
-    function getQuestionCategory(position) {
-      const explicitClass = getTileClass(position);
-      if (explicitClass === "easy" || explicitClass === "medium" || explicitClass === "hard") {
-        return explicitClass;
+    function createTone(startTime, frequency, duration, type, volume) {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      oscillator.type = type;
+      oscillator.frequency.setValueAtTime(frequency, startTime);
+      gainNode.gain.setValueAtTime(0.0001, startTime);
+      gainNode.gain.exponentialRampToValueAtTime(volume, startTime + 0.04);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+      oscillator.connect(gainNode);
+      gainNode.connect(musicMasterGain);
+      oscillator.start(startTime);
+      oscillator.stop(startTime + duration + 0.05);
+    }
+    function createNoiseHit(startTime, duration, volume) {
+      const bufferSize = Math.max(1, Math.floor(audioContext.sampleRate * duration));
+      const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i += 1) {
+        data[i] = (Math.random() * 2 - 1) * (1 - i / bufferSize);
       }
-      if (position <= 20) return "easy";
-      if (position <= 42) return "medium";
-      return "hard";
+      const source = audioContext.createBufferSource();
+      const filter = audioContext.createBiquadFilter();
+      const gainNode = audioContext.createGain();
+      source.buffer = buffer;
+      filter.type = "highpass";
+      filter.frequency.setValueAtTime(700, startTime);
+      gainNode.gain.setValueAtTime(volume, startTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
+      source.connect(filter);
+      filter.connect(gainNode);
+      gainNode.connect(musicMasterGain);
+      source.start(startTime);
+      source.stop(startTime + duration);
     }
+    function scheduleMusicBar() {
+      if (!audioContext || !musicEnabled) return;
+      const now = audioContext.currentTime;
+      const chordSets = [
+        [261.63, 329.63, 392.0],
+        [220.0, 277.18, 329.63],
+        [174.61, 220.0, 293.66],
+        [196.0, 246.94, 329.63]
+      ];
+      const melodySets = [
+        [523.25, 587.33, 659.25, 698.46, 659.25, 587.33, 523.25, 392.0],
+        [493.88, 523.25, 587.33, 659.25, 587.33, 523.25, 493.88, 392.0],
+        [440.0, 493.88, 523.25, 587.33, 523.25, 493.88, 440.0, 349.23],
+        [392.0, 440.0, 493.88, 523.25, 493.88, 440.0, 392.0, 329.63]
+      ];
+      const bassLine = [130.81, 110.0, 87.31, 98.0];
+      const chord = chordSets[musicStep % chordSets.length];
+      const melody = melodySets[musicStep % melodySets.length];
+      const bass = bassLine[musicStep % bassLine.length];
+      const beatLength = 0.35;
 
-    function createBoard() {
+      chord.forEach((note, index) => {
+        createTone(now + index * 0.015, note, 1.18, "triangle", 0.028);
+        createTone(now + 0.7 + index * 0.015, note, 0.42, "triangle", 0.018);
+      });
+
+      melody.forEach((note, index) => {
+        const start = now + index * beatLength * 0.5;
+        const duration = index % 2 === 0 ? 0.24 : 0.18;
+        createTone(start, note, duration, "square", 0.038);
+      });
+
+      for (let step = 0; step < 4; step += 1) {
+        const stepTime = now + step * beatLength;
+        createTone(stepTime, bass, 0.2, "sine", 0.03);
+        createTone(stepTime + 0.18, bass * 1.5, 0.12, "triangle", 0.018);
+        createNoiseHit(stepTime, 0.06, step === 0 ? 0.018 : 0.01);
+      }
+
+      if (musicPulseGain) {
+        musicPulseGain.gain.cancelScheduledValues(now);
+        musicPulseGain.gain.setValueAtTime(0.008, now);
+        musicPulseGain.gain.exponentialRampToValueAtTime(0.001, now + 1.1);
+      }
+      musicStep += 1;
+    }
+    async function toggleMusic() {
+      if (!audioContext) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioContextClass();
+        musicMasterGain = audioContext.createGain();
+        musicMasterGain.gain.value = 0.18;
+        musicMasterGain.connect(audioContext.destination);
+        musicPulseGain = audioContext.createGain();
+        musicPulseGain.gain.value = 0.001;
+        musicPulseGain.connect(musicMasterGain);
+      }
+      if (audioContext.state === "suspended") {
+        await audioContext.resume();
+      }
+      musicEnabled = !musicEnabled;
+      updateMusicButton();
+      if (musicEnabled) {
+        musicStep = 0;
+        scheduleMusicBar();
+        musicInterval = window.setInterval(scheduleMusicBar, 1400);
+        addLog("Lagu latar misi global dihidupkan.");
+      } else {
+        clearInterval(musicInterval);
+        musicInterval = null;
+        addLog("Lagu latar dimatikan.");
+      }
+    }
+    function buildBoard() {
       boardEl.innerHTML = "";
-      const boardNumbers = [];
-
-      for (let row = BOARD_DIMENSION - 1; row >= 0; row--) {
-        const rowStart = row * BOARD_DIMENSION + 1;
-        const rowNumbers = Array.from({ length: BOARD_DIMENSION }, (_, index) => rowStart + index);
-        if ((BOARD_DIMENSION - 1 - row) % 2 === 1) {
-          rowNumbers.reverse();
-        }
-        boardNumbers.push(...rowNumbers);
-      }
-
-      boardNumbers.forEach(number => {
+      boardLayout.forEach((type, index) => {
         const tile = document.createElement("div");
-        const tileClass = getTileClass(number);
-        tile.className = `tile ${tileClass}`;
-        tile.dataset.tile = number;
-
-        if (number === 1) tile.classList.add("start");
-        if (number === BOARD_SIZE) tile.classList.add("finish");
-
-        const special = specialTiles.find(item => item.start === number);
-        const label = number === 1 ? "START" : number === BOARD_SIZE ? "FINISH" : CATEGORY_EFFECTS[getQuestionCategory(number)].label;
-
-        tile.innerHTML = `
-          <div class="tile-number">${number}</div>
-          <div class="tile-label">${label}</div>
-          ${special ? `<div class="tile-special">${special.type === "snake" ? "Ular" : "Tangga"}: ${special.label}</div>` : ""}
-          <div class="tokens"></div>
-        `;
-
+        const category = categoryConfig[type];
+        const title = type === "mini" ? "Mini Game" : type === "start" ? "Mula" : type === "finish" ? "Kemuncak" : category.label;
+        tile.className = `tile ${category ? category.className : type}${type === "mini" ? " minigame" : ""}`;
+        tile.dataset.position = index;
+        tile.innerHTML = `<div class="tile-header"><div class="tile-number">${index + 1}</div><small>${title}</small></div><p>${tileDescriptions[type] || `Jawab soalan kategori ${title}.`}</p><div class="tokens"></div>`;
         boardEl.appendChild(tile);
       });
-
       renderTokens();
-      renderSpecialList();
     }
-
-    function renderSpecialList() {
-      specialListEl.innerHTML = "";
-      specialTiles.forEach(item => {
-        const badge = document.createElement("div");
-        badge.className = "special-badge";
-        badge.innerHTML = `
-          <span class="special-type ${item.type === "snake" ? "snake-type" : "ladder-type"}">${item.type === "snake" ? "Ular" : "Tangga"}</span>
-          <span>Petak ${item.start} ke ${item.end}: ${item.label}</span>
-        `;
-        specialListEl.appendChild(badge);
-      });
-    }
-
-    function renderTokens(activePlayer = null, movingPlayer = null) {
-      document.querySelectorAll(".tokens").forEach(el => {
-        el.innerHTML = "";
-      });
-
-      players.forEach((player, index) => {
-        const tile = document.querySelector(`[data-tile="${player.position}"] .tokens`);
+    function createPlayers(count) { gameState.players = playersBase.slice(0, count).map((player, index) => ({ ...player, id: index + 1, score: 0, position: 0, dice: 0, pendingMove: 0 })); }
+    function renderTokens() {
+      document.querySelectorAll(".tile").forEach((tile) => { tile.classList.remove("active"); tile.querySelector(".tokens").innerHTML = ""; });
+      gameState.players.forEach((player, idx) => {
+        const tile = document.querySelector(`.tile[data-position="${player.position}"]`);
         if (!tile) return;
-
         const token = document.createElement("div");
-        token.className = "token";
-        if (activePlayer === index) token.classList.add("active");
-        if (movingPlayer === index) token.classList.add("moving");
-        token.style.background = player.color;
-        token.textContent = index + 1;
-        token.title = `${player.name} di petak ${player.position}`;
-        tile.appendChild(token);
+        token.className = `token ${player.className}`; token.title = player.name; tile.querySelector(".tokens").appendChild(token);
+        if (idx === gameState.currentPlayerIndex && gameState.started) tile.classList.add("active");
       });
     }
-
-    function updateInfoPanel(shouldRenderTokens = true) {
-      const currentPlayer = players[gameState.currentPlayer];
-      currentTurnEl.textContent = gameState.started && !gameState.gameOver ? currentPlayer.name : "Belum bermula";
-      lastDiceEl.textContent = gameState.lastDice ?? "-";
-      player1PosEl.textContent = `Petak ${players[0].position}`;
-      player2PosEl.textContent = `Petak ${players[1].position}`;
-      player1ScoreEl.textContent = `Markah: ${players[0].score}`;
-      player2ScoreEl.textContent = `Markah: ${players[1].score}`;
-
-      if (shouldRenderTokens) {
-        renderTokens(gameState.started && !gameState.gameOver ? gameState.currentPlayer : null, null);
-      }
-      updateButtons();
+    function getLeader() {
+      const sorted = [...gameState.players].sort((a, b) => b.score !== a.score ? b.score - a.score : b.position - a.position);
+      return sorted[0];
     }
-
-    function updateStatus(message) {
-      statusBannerEl.textContent = message;
+    function renderScoreboard() {
+      if (!gameState.players.length) { scoreListEl.innerHTML = ""; leaderInfoEl.textContent = "-"; return; }
+      const sorted = [...gameState.players].sort((a, b) => b.score !== a.score ? b.score - a.score : b.position - a.position);
+      scoreListEl.innerHTML = sorted.map((player, index) => `<div class="score-item"><div class="score-head"><span class="player-dot" style="background:${getPlayerColor(player.className)}"></span><span>${player.name}</span></div><div class="score-meta"><div>${player.score} markah</div><div>Petak ${player.position + 1} | Kedudukan ${index + 1}</div></div></div>`).join("");
+      const leader = getLeader(); leaderInfoEl.textContent = `${leader.name} (${leader.score} markah)`;
     }
-
-    function updateButtons() {
-      rollBtn.disabled = !gameState.started || gameState.isAnimating || gameState.awaitingQuestion || gameState.hasAnswered || gameState.gameOver;
-      answerBtn.disabled = !gameState.awaitingQuestion || gameState.isAnimating || gameState.hasAnswered || gameState.gameOver;
-      nextBtn.disabled = !gameState.started || gameState.isAnimating || !gameState.hasAnswered || gameState.gameOver;
+    function addLog(message) {
+      gameState.log.unshift(message); gameState.log = gameState.log.slice(0, 10);
+      logListEl.innerHTML = gameState.log.map((item, index) => `<div class="log-item"><strong>#${gameState.log.length - index}</strong><span>${item}</span></div>`).join("");
     }
-
-    function resetQuestionTracking() {
-      Object.keys(usedQuestionIds).forEach(key => {
-        usedQuestionIds[key] = [];
-      });
+    function updateInfo(statusText = "Sedia") {
+      if (!gameState.started || !gameState.players.length) { turnInfoEl.textContent = "Belum bermula"; diceInfoEl.textContent = "-"; statusInfoEl.textContent = statusText; }
+      else { const current = gameState.players[gameState.currentPlayerIndex]; turnInfoEl.textContent = current.name; diceInfoEl.textContent = current.dice || "-"; statusInfoEl.textContent = statusText; }
+      renderScoreboard(); renderTokens();
     }
-
-    function startGame() {
-      players.forEach(player => {
-        player.position = 1;
-        player.score = 0;
-      });
-
-      gameState.started = true;
-      gameState.currentPlayer = 0;
-      gameState.lastDice = null;
-      gameState.isAnimating = false;
-      gameState.awaitingQuestion = false;
-      gameState.hasAnswered = false;
-      gameState.gameOver = false;
-      gameState.pendingCategory = null;
-      gameState.pendingQuestion = null;
-      gameState.specialEvent = null;
-      resetQuestionTracking();
-      closeAllModals();
-      createBoard();
-      updateInfoPanel();
-      updateStatus("Permainan bermula. Giliran Pemain 1 untuk melontar dadu.");
+    function setButtons({ roll = false, answer = false, next = false }) {
+      rollBtn.disabled = !roll;
+      answerBtn.disabled = !answer;
+      nextBtn.disabled = !next;
+      modalNextBtn.disabled = !next;
     }
-
-    function resetGame() {
-      gameState.started = false;
-      gameState.currentPlayer = 0;
-      gameState.lastDice = null;
-      gameState.isAnimating = false;
-      gameState.awaitingQuestion = false;
-      gameState.hasAnswered = false;
-      gameState.gameOver = false;
-      gameState.pendingCategory = null;
-      gameState.pendingQuestion = null;
-      gameState.specialEvent = null;
-      players.forEach(player => {
-        player.position = 1;
-        player.score = 0;
-      });
-      resetQuestionTracking();
-      closeAllModals();
-      createBoard();
-      updateInfoPanel();
-      updateStatus("Tekan “Mula Permainan” untuk memulakan cabaran warisan negara bangsa.");
+    function resetQuestionUi() {
+      feedbackBoxEl.className = "feedback";
+      feedbackBoxEl.innerHTML = "";
+      questionContentEl.innerHTML = "";
+      gameState.selectedAnswer = null;
+      answerBtn.disabled = true;
+      modalNextBtn.disabled = true;
     }
-
-    function rollDice() {
-      if (!gameState.started || gameState.isAnimating || gameState.awaitingQuestion || gameState.hasAnswered || gameState.gameOver) return;
-
-      const currentIndex = gameState.currentPlayer;
-      const currentPlayer = players[currentIndex];
-      const dice = Math.floor(Math.random() * 6) + 1;
-      gameState.lastDice = dice;
-      gameState.isAnimating = true;
-      updateInfoPanel();
-      updateStatus(`${currentPlayer.name} memperoleh ${dice}. Token sedang bergerak.`);
-
-      movePlayer(currentIndex, dice, () => {
-        const winner = checkWinner();
-        if (winner) return;
-
-        resolveSpecialTile(() => {
-          const winnerAfterSpecial = checkWinner();
-          if (winnerAfterSpecial) return;
-
-          gameState.pendingCategory = getQuestionCategory(players[currentIndex].position);
-          gameState.isAnimating = false;
-          gameState.awaitingQuestion = true;
-          gameState.hasAnswered = false;
-          renderTokens(gameState.currentPlayer, null);
-          updateButtons();
-          updateStatus(`${currentPlayer.name} mendarat di petak ${players[currentIndex].position}. Tekan “Jawab Soalan”.`);
-        });
-      });
+    function openModal() { questionModalEl.classList.add("open"); questionModalEl.setAttribute("aria-hidden", "false"); }
+    function closeModal() { questionModalEl.classList.remove("open"); questionModalEl.setAttribute("aria-hidden", "true"); resetQuestionUi(); clearInterval(gameState.blitzTimer); }
+    function getQuestionPool(category) {
+      if (!gameState.usedQuestions[category]) gameState.usedQuestions[category] = [];
+      const source = category === "mini" ? questionBank.mixed : questionBank[category];
+      const unused = source.filter((_, index) => !gameState.usedQuestions[category].includes(index));
+      if (!unused.length) { gameState.usedQuestions[category] = []; return source; }
+      return unused;
     }
-
-    function movePlayer(playerIndex, steps, callback) {
-      const player = players[playerIndex];
-      const direction = steps >= 0 ? 1 : -1;
-      let remaining = Math.abs(steps);
-
-      if (remaining === 0) {
-        renderTokens(gameState.currentPlayer, null);
-        if (callback) callback();
-        return;
-      }
-
-      const interval = setInterval(() => {
-        if (remaining <= 0) {
-          clearInterval(interval);
-          renderTokens(gameState.currentPlayer, null);
-          if (callback) callback();
-          return;
-        }
-
-        player.position += direction;
-        if (player.position < 1) player.position = 1;
-        if (player.position > BOARD_SIZE) player.position = BOARD_SIZE;
-        remaining -= 1;
-        renderTokens(gameState.currentPlayer, playerIndex);
-        updateInfoPanel(false);
-
-        if (player.position === 1 || player.position === BOARD_SIZE) {
-          remaining = 0;
-        }
-      }, 230);
+    function pickQuestion(category) {
+      const pool = getQuestionPool(category);
+      const source = category === "mini" ? questionBank.mixed : questionBank[category];
+      const question = pool[Math.floor(Math.random() * pool.length)];
+      gameState.usedQuestions[category].push(source.indexOf(question));
+      return question;
     }
-
-    function resolveSpecialTile(callback) {
-      const player = players[gameState.currentPlayer];
-      const event = specialTiles.find(item => item.start === player.position);
-
-      if (!event) {
-        gameState.specialEvent = null;
-        if (callback) callback();
-        return;
-      }
-
-      gameState.specialEvent = event;
-      const travel = event.end - event.start;
-      gameState.isAnimating = true;
-      updateButtons();
-      updateStatus(`${player.name} terkena ${event.type === "snake" ? "ular sejarah" : "tangga warisan"}: ${event.label}.`);
-
+    function submitAnswerAfterSelection() {
+      answerBtn.disabled = false;
       setTimeout(() => {
-        movePlayer(gameState.currentPlayer, travel, () => {
-          updateStatus(`${player.name} kini berada di petak ${player.position} selepas ${event.type === "snake" ? "turun" : "naik"} kerana: ${event.label}.`);
-          if (callback) callback();
+        if (!gameState.awaitingQuestion || answerBtn.disabled) return;
+        evaluateAnswer();
+      }, 120);
+    }
+    function renderQuestion(question, categoryKey) {
+      const actualCategory = question.category || categoryKey;
+      const meta = categoryConfig[actualCategory] || { label: "Mini Game", className: "blue", colorLabel: "Khas" };
+      questionCategoryEl.innerHTML = `<span class="swatch ${getSwatchClass(meta.className)}"></span>${meta.colorLabel}: ${meta.label}`;
+      questionTitleEl.textContent = question.question;
+      questionTextEl.textContent = question.prompt || "Pilih jawapan terbaik berdasarkan pengetahuan anda.";
+      questionTypeEl.textContent = ({ objective: "Objektif 4 Pilihan", truefalse: "Benar / Palsu", scenario: "Situasi Aplikasi", matching: "Padanan Istilah", memory: "Memory Flip Cards", blitz: "Blitz Quiz 30 Saat" })[question.type];
+      resetQuestionUi();
+      if (question.type === "objective" || question.type === "scenario") {
+        const wrapper = document.createElement("div"); wrapper.className = "answers";
+        question.options.forEach((option, index) => {
+          const button = document.createElement("button"); button.className = "answer-btn"; button.textContent = option;
+          button.addEventListener("click", () => {
+            gameState.selectedAnswer = index;
+            wrapper.querySelectorAll(".answer-btn").forEach((el) => el.classList.remove("selected"));
+            button.classList.add("selected");
+            submitAnswerAfterSelection();
+          });
+          wrapper.appendChild(button);
         });
-      }, 500);
+        questionContentEl.appendChild(wrapper);
+      } else if (question.type === "truefalse") {
+        const wrapper = document.createElement("div"); wrapper.className = "answers";
+        ["Benar", "Palsu"].forEach((label, index) => {
+          const button = document.createElement("button"); button.className = "answer-btn"; button.textContent = label;
+          button.addEventListener("click", () => {
+            gameState.selectedAnswer = index === 0;
+            wrapper.querySelectorAll(".answer-btn").forEach((el) => el.classList.remove("selected"));
+            button.classList.add("selected");
+            submitAnswerAfterSelection();
+          });
+          wrapper.appendChild(button);
+        });
+        questionContentEl.appendChild(wrapper);
+      } else if (question.type === "matching") renderMatchingGame(question);
+      else if (question.type === "memory") renderMemoryGame(question);
+      else if (question.type === "blitz") renderBlitzGame(question);
     }
-
-    function getNextQuestion(category) {
-      const bank = questionBanks[category];
-      if (usedQuestionIds[category].length >= bank.length) {
-        usedQuestionIds[category] = [];
-      }
-
-      const availableIndexes = bank
-        .map((_, index) => index)
-        .filter(index => !usedQuestionIds[category].includes(index));
-
-      const randomIndex = availableIndexes[Math.floor(Math.random() * availableIndexes.length)];
-      usedQuestionIds[category].push(randomIndex);
-      return bank[randomIndex];
-    }
-
-    function openQuestionModal() {
-      if (!gameState.awaitingQuestion || gameState.gameOver) return;
-
-      const player = players[gameState.currentPlayer];
-      const category = gameState.pendingCategory || getQuestionCategory(player.position);
-      const question = gameState.pendingQuestion || getNextQuestion(category);
-      gameState.pendingQuestion = question;
-
-      questionPlayerEl.textContent = player.name;
-      questionCategoryEl.textContent = `Tahap: ${CATEGORY_EFFECTS[category].label}`;
-      questionPositionEl.textContent = `Petak: ${player.position}`;
-      questionTextEl.textContent = question.question;
-      questionOptionsEl.innerHTML = "";
-
-      question.options.forEach((option, index) => {
-        const btn = document.createElement("button");
-        btn.className = "option-btn";
-        btn.textContent = `${String.fromCharCode(65 + index)}. ${option}`;
-        btn.addEventListener("click", () => submitAnswer(index));
-        questionOptionsEl.appendChild(btn);
+    function renderMatchingGame(question) {
+      const terms = shuffle(question.pairs.map((pair) => pair.term));
+      const targets = shuffle(question.pairs.map((pair) => pair.match));
+      const board = document.createElement("div"); board.className = "match-board";
+      const left = document.createElement("div"); left.className = "match-list";
+      const right = document.createElement("div"); right.className = "match-list";
+      const matches = {};
+      terms.forEach((term) => {
+        const item = document.createElement("div"); item.className = "match-item"; item.draggable = true; item.textContent = term;
+        item.addEventListener("dragstart", (event) => { event.dataTransfer.setData("text/plain", term); }); left.appendChild(item);
       });
-
-      showModal("questionModal");
+      targets.forEach((target) => {
+        const zone = document.createElement("div"); zone.className = "drop-zone"; zone.innerHTML = `<strong>${target}</strong><div class="footer-note">Lepaskan istilah di sini</div>`;
+        zone.addEventListener("dragover", (event) => { event.preventDefault(); zone.classList.add("over"); });
+        zone.addEventListener("dragleave", () => zone.classList.remove("over"));
+        zone.addEventListener("drop", (event) => {
+          event.preventDefault(); zone.classList.remove("over");
+          const term = event.dataTransfer.getData("text/plain"); matches[target] = term; zone.innerHTML = `<strong>${target}</strong><div>${term}</div>`;
+          gameState.selectedAnswer = matches; answerBtn.disabled = Object.keys(matches).length !== question.pairs.length;
+        });
+        right.appendChild(zone);
+      });
+      board.append(left, right); questionContentEl.appendChild(board); answerBtn.disabled = true;
     }
-
-    function submitAnswer(selectedIndex) {
-      if (!gameState.pendingQuestion || gameState.hasAnswered || gameState.gameOver) return;
-
-      const category = gameState.pendingCategory;
-      const isCorrect = selectedIndex === gameState.pendingQuestion.answer;
-      closeModal("questionModal");
-      applyQuestionOutcome(isCorrect, category);
+    function renderMemoryGame(question) {
+      const cards = shuffle([...question.pairs, ...question.pairs]);
+      const grid = document.createElement("div"); grid.className = "memory-grid";
+      let firstCard = null; let lock = false; let matches = 0;
+      cards.forEach((label) => {
+        const card = document.createElement("button"); card.type = "button"; card.className = "memory-card"; card.textContent = "?"; card.dataset.value = label;
+        card.addEventListener("click", () => {
+          if (lock || card.classList.contains("matched") || card.classList.contains("revealed")) return;
+          card.classList.add("revealed"); card.textContent = label;
+          if (!firstCard) { firstCard = card; return; }
+          lock = true;
+          if (firstCard.dataset.value === card.dataset.value) {
+            firstCard.classList.add("matched"); card.classList.add("matched"); matches += 1; firstCard = null; lock = false;
+            if (matches === question.pairs.length) { gameState.selectedAnswer = { matched: true }; answerBtn.disabled = false; }
+          } else {
+            const previous = firstCard; firstCard = null;
+            setTimeout(() => { previous.classList.remove("revealed"); previous.textContent = "?"; card.classList.remove("revealed"); card.textContent = "?"; lock = false; }, 700);
+          }
+        });
+        grid.appendChild(card);
+      });
+      questionContentEl.appendChild(grid); answerBtn.disabled = true;
     }
-
-    function applyQuestionOutcome(isCorrect, category) {
-      const player = players[gameState.currentPlayer];
-      const effect = CATEGORY_EFFECTS[category];
-      const correctAnswer = gameState.pendingQuestion.options[gameState.pendingQuestion.answer];
-      const movement = isCorrect ? effect.bonus : -effect.penalty;
-
-      feedbackBoxEl.className = `feedback-box ${isCorrect ? "correct" : "wrong"}`;
-      feedbackBoxEl.innerHTML = `
-        <strong>${isCorrect ? "Betul" : "Salah"}</strong>
-        <p>${isCorrect ? "Tahniah, jawapan anda tepat." : "Jawapan yang dipilih kurang tepat."}</p>
-      `;
-      feedbackAnswerEl.innerHTML = `<strong>Jawapan sebenar:</strong> ${correctAnswer}`;
-      feedbackExplanationEl.innerHTML = `<strong>Penjelasan:</strong> ${gameState.pendingQuestion.explanation}`;
-      feedbackMovementEl.innerHTML = isCorrect
-        ? `<strong>Ganjaran:</strong> Maju ${effect.bonus} petak dan tambah ${effect.score} markah.`
-        : `<strong>Kesan:</strong> Undur ${effect.penalty} petak.`;
-
-      if (isCorrect) {
-        player.score += effect.score;
-      }
-
-      gameState.awaitingQuestion = false;
-      gameState.hasAnswered = true;
-      gameState.pendingQuestion = null;
-
-      showModal("feedbackModal");
-
-      feedbackCloseBtn.onclick = () => {
-        closeModal("feedbackModal");
-        gameState.isAnimating = true;
-        updateButtons();
-        movePlayer(gameState.currentPlayer, movement, () => {
-          gameState.isAnimating = false;
-          updateInfoPanel();
-          const winner = checkWinner();
-          if (winner) return;
-          renderTokens(gameState.currentPlayer, null);
-          updateStatus(`${player.name} selesai menjawab. Tekan “Seterusnya” untuk giliran pemain lain.`);
-          updateButtons();
+    function renderBlitzGame(question) {
+      gameState.blitzScore = 0; gameState.blitzRoundIndex = 0;
+      const wrapper = document.createElement("div");
+      wrapper.innerHTML = `<div class="blitz-top"><div><strong>Jawapan betul:</strong> <span id="blitzScore">0</span></div><div class="timer" id="blitzTimer">30s</div></div><div id="blitzQuestion" style="margin-top:14px;font-weight:800;"></div><div id="blitzOptions" class="blitz-options"></div>`;
+      questionContentEl.appendChild(wrapper);
+      const scoreEl = wrapper.querySelector("#blitzScore");
+      const timerEl = wrapper.querySelector("#blitzTimer");
+      const qEl = wrapper.querySelector("#blitzQuestion");
+      const optionsEl = wrapper.querySelector("#blitzOptions");
+      const renderRound = () => {
+        const round = question.rounds[gameState.blitzRoundIndex % question.rounds.length];
+        qEl.textContent = round.question; optionsEl.innerHTML = "";
+        round.options.forEach((option, index) => {
+          const item = document.createElement("button"); item.type = "button"; item.className = "blitz-option"; item.textContent = option;
+          item.addEventListener("click", () => {
+            if (round.answer === index) { gameState.blitzScore += 1; scoreEl.textContent = gameState.blitzScore; }
+            gameState.blitzRoundIndex += 1; renderRound();
+          });
+          optionsEl.appendChild(item);
         });
       };
-
-      updateButtons();
+      renderRound(); answerBtn.disabled = true; gameState.blitzEndTime = Date.now() + 30000; clearInterval(gameState.blitzTimer);
+      gameState.blitzTimer = setInterval(() => {
+        const seconds = Math.max(0, Math.ceil((gameState.blitzEndTime - Date.now()) / 1000));
+        timerEl.textContent = `${seconds}s`;
+        if (seconds <= 0) { clearInterval(gameState.blitzTimer); gameState.selectedAnswer = { score: gameState.blitzScore }; answerBtn.disabled = false; }
+      }, 250);
     }
-
-    function endTurn() {
-      if (!gameState.started || !gameState.hasAnswered || gameState.gameOver) return;
-
-      gameState.currentPlayer = gameState.currentPlayer === 0 ? 1 : 0;
-      gameState.lastDice = null;
-      gameState.isAnimating = false;
-      gameState.hasAnswered = false;
+    function showQuestionForTile(tileType) {
+      const category = tileType === "mini" ? "mini" : tileType;
+      const question = pickQuestion(category);
+      gameState.currentQuestion = question; gameState.currentCategory = category;
+      renderQuestion(question, category); openModal(); gameState.awaitingQuestion = true;
+      setButtons({ roll: false, answer: true, next: false }); updateInfo(tileType === "mini" ? "Mini game aktif" : "Menunggu jawapan");
+    }
+    function chooseAutoAnswer(question) {
+      if (question.type === "objective" || question.type === "scenario") {
+        return Math.random() < 0.75 ? question.answer : (question.answer + 1) % question.options.length;
+      }
+      if (question.type === "truefalse") {
+        return question.answer;
+      }
+      if (question.type === "matching") {
+        return question.pairs.reduce((accumulator, pair) => {
+          accumulator[pair.match] = pair.term;
+          return accumulator;
+        }, {});
+      }
+      if (question.type === "memory") {
+        return { matched: true };
+      }
+      if (question.type === "blitz") {
+        return { score: 4 };
+      }
+      return null;
+    }
+    async function movePlayer(player, steps) {
+      for (let i = 0; i < steps; i += 1) {
+        if (player.position < boardLayout.length - 1) player.position += 1;
+        renderTokens(); await new Promise((resolve) => setTimeout(resolve, 220));
+      }
+    }
+    async function shiftPlayer(player, delta) {
+      const target = Math.max(0, Math.min(boardLayout.length - 1, player.position + delta));
+      while (player.position !== target) {
+        player.position += player.position < target ? 1 : -1;
+        renderTokens(); await new Promise((resolve) => setTimeout(resolve, 180));
+      }
+    }
+    function evaluateAnswer() {
+      const player = gameState.players[gameState.currentPlayerIndex];
+      const question = gameState.currentQuestion;
+      let correct = false; let actualAnswer = "";
+      if (question.type === "objective" || question.type === "scenario") { correct = gameState.selectedAnswer === question.answer; actualAnswer = question.options[question.answer]; }
+      else if (question.type === "truefalse") { correct = gameState.selectedAnswer === question.answer; actualAnswer = question.answer ? "Benar" : "Palsu"; }
+      else if (question.type === "matching") { correct = question.pairs.every((pair) => gameState.selectedAnswer && gameState.selectedAnswer[pair.match] === pair.term); actualAnswer = question.pairs.map((pair) => `${pair.term} -> ${pair.match}`).join("<br>"); }
+      else if (question.type === "memory") { correct = Boolean(gameState.selectedAnswer && gameState.selectedAnswer.matched); actualAnswer = "Semua pasangan berjaya ditemui."; }
+      else if (question.type === "blitz") { const score = gameState.selectedAnswer ? gameState.selectedAnswer.score : 0; correct = score >= 3; actualAnswer = `Skor blitz anda: ${score}/5`; }
+      feedbackBoxEl.className = `feedback show ${correct ? "correct" : "wrong"}`;
+      feedbackBoxEl.innerHTML = `<strong>${correct ? "Betul" : "Salah"}</strong><div>Jawapan sebenar: ${actualAnswer}</div><div>Penerangan: ${question.explanation}</div>`;
+      answerBtn.disabled = true;
+      nextBtn.disabled = false;
+      modalNextBtn.disabled = false;
       gameState.awaitingQuestion = false;
-      gameState.pendingCategory = null;
-      gameState.pendingQuestion = null;
-      updateInfoPanel();
-      updateStatus(`Giliran ${players[gameState.currentPlayer].name}. Tekan “Lontar Dadu”.`);
+      gameState.awaitingNext = true;
+      if (correct) { player.score += question.type === "blitz" ? 12 : 10; player.pendingMove = 1; addLog(`${player.name} menjawab betul dan memperoleh bonus 1 petak.`); updateInfo("Jawapan betul - tekan Seterusnya"); }
+      else { player.score = Math.max(0, player.score - 5); player.pendingMove = -1; addLog(`${player.name} tersilap dan akan berundur 1 petak.`); updateInfo("Jawapan salah - tekan Seterusnya"); }
     }
-
-    function checkWinner() {
-      const player = players[gameState.currentPlayer];
-      if (player.position >= BOARD_SIZE) {
-        player.position = BOARD_SIZE;
-        gameState.gameOver = true;
-        gameState.isAnimating = false;
-        gameState.awaitingQuestion = false;
-        gameState.hasAnswered = false;
-        updateInfoPanel();
-        showWinner(player);
-        return true;
+    async function finishTurn() {
+      const player = gameState.players[gameState.currentPlayerIndex];
+      closeModal(); if (player.pendingMove) await shiftPlayer(player, player.pendingMove); player.pendingMove = 0;
+      renderScoreboard(); renderTokens(); if (checkWinner(player)) return;
+      gameState.awaitingNext = false; gameState.currentPlayerIndex = (gameState.currentPlayerIndex + 1) % gameState.players.length;
+      setButtons({ roll: true, answer: false, next: false }); updateInfo("Giliran diteruskan");
+    }
+    function checkWinner(player) {
+      if (player.position >= boardLayout.length - 1 || player.score >= 80) {
+        gameState.winner = player; setButtons({ roll: false, answer: false, next: false });
+        addLog(`${player.name} memenangi permainan dengan ${player.score} markah.`); updateInfo("Permainan tamat");
+        window.alert(`${player.name} menang!\nMarkah: ${player.score}\nKedudukan akhir: Petak ${player.position + 1}`); return true;
       }
       return false;
     }
-
-    function showWinner(player) {
-      winnerTitleEl.textContent = `${player.name} Menang!`;
-      winnerTextEl.textContent = `${player.name} berjaya sampai ke FINISH sambil menguasai topik Warisan Negara Bangsa.`;
-      winnerScoreEl.textContent = `Markah akhir: ${player.score}`;
-      updateStatus(`${player.name} menang permainan.`);
-      showModal("winnerModal");
+    async function handleRoll() {
+      if (!gameState.started || gameState.awaitingQuestion || gameState.awaitingNext || gameState.winner) return;
+      const player = gameState.players[gameState.currentPlayerIndex];
+      const dice = Math.floor(Math.random() * 6) + 1; player.dice = dice;
+      setButtons({ roll: false, answer: false, next: false }); updateInfo("Token sedang bergerak"); addLog(`${player.name} melontar dadu ${dice}.`);
+      await movePlayer(player, dice); if (checkWinner(player)) return;
+      const tileType = boardLayout[player.position];
+      const label = tileType === "mini" ? "Mini Game" : tileType === "finish" ? "Kemuncak" : categoryConfig[tileType].label;
+      addLog(`${player.name} tiba di petak ${player.position + 1} (${label}).`); showQuestionForTile(tileType === "finish" ? "mini" : tileType);
     }
-
-    function showModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.add("show");
-      modal.setAttribute("aria-hidden", "false");
+    function startGame() {
+      const count = Number(playerCountEl.value); heroPlayersEl.textContent = `${count} pemain`;
+      Object.assign(gameState, { currentPlayerIndex: 0, started: true, awaitingQuestion: false, awaitingNext: false, currentQuestion: null, currentCategory: null, selectedAnswer: null, winner: null, log: [], usedQuestions: {} });
+      clearInterval(gameState.blitzTimer); createPlayers(count); buildBoard(); addLog("Permainan bermula. Misi diplomasi antarabangsa dimulakan."); updateInfo("Giliran pertama"); setButtons({ roll: true, answer: false, next: false });
     }
-
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      modal.classList.remove("show");
-      modal.setAttribute("aria-hidden", "true");
+    async function runAutoTest() {
+      resetGame();
+      startGame();
+      const player = gameState.players[gameState.currentPlayerIndex];
+      const forcedDice = 3;
+      player.dice = forcedDice;
+      updateInfo("Ujian auto: token bergerak");
+      addLog(`Ujian auto bermula untuk ${player.name}. Dadu ujian = ${forcedDice}.`);
+      await movePlayer(player, forcedDice);
+      const tileType = boardLayout[player.position];
+      addLog(`Ujian auto: ${player.name} tiba di petak ${player.position + 1}.`);
+      showQuestionForTile(tileType === "finish" ? "mini" : tileType);
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      gameState.selectedAnswer = chooseAutoAnswer(gameState.currentQuestion);
+      answerBtn.disabled = false;
+      evaluateAnswer();
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      await finishTurn();
+      const nextPlayer = gameState.players[gameState.currentPlayerIndex];
+      const summary = `Ujian auto selesai. Pusingan pertama lulus: giliran beralih ke ${nextPlayer.name}, markah ${player.name} = ${player.score}, kedudukan = petak ${player.position + 1}.`;
+      addLog(summary);
+      updateInfo("Ujian auto selesai");
+      window.alert(summary);
     }
-
-    function closeAllModals() {
-      document.querySelectorAll(".modal").forEach(modal => {
-        modal.classList.remove("show");
-        modal.setAttribute("aria-hidden", "true");
-      });
+    function resetGame() {
+      clearInterval(gameState.blitzTimer); closeModal(); Object.assign(gameState, { players: [], currentPlayerIndex: 0, started: false, awaitingQuestion: false, awaitingNext: false, currentQuestion: null, currentCategory: null, selectedAnswer: null, winner: null, log: [], usedQuestions: {} });
+      boardEl.innerHTML = ""; scoreListEl.innerHTML = ""; logListEl.innerHTML = ""; heroPlayersEl.textContent = `${playerCountEl.value} pemain`;
+      buildBoard(); updateInfo("Sedia untuk permainan baharu"); setButtons({ roll: false, answer: false, next: false }); addLog("Permainan telah diset semula.");
     }
-
-    document.querySelectorAll("[data-close]").forEach(button => {
-      button.addEventListener("click", event => {
-        const targetId = event.currentTarget.getAttribute("data-close");
-        closeModal(targetId);
-      });
-    });
-
     startBtn.addEventListener("click", startGame);
-    rulesBtn.addEventListener("click", () => showModal("rulesModal"));
-    rollBtn.addEventListener("click", rollDice);
-    answerBtn.addEventListener("click", openQuestionModal);
-    nextBtn.addEventListener("click", endTurn);
+    rollBtn.addEventListener("click", handleRoll);
+    answerBtn.addEventListener("click", evaluateAnswer);
+    nextBtn.addEventListener("click", finishTurn);
+    modalNextBtn.addEventListener("click", finishTurn);
     resetBtn.addEventListener("click", resetGame);
-    winnerResetBtn.addEventListener("click", resetGame);
-
-    createBoard();
-    updateInfoPanel();
+    testBtn.addEventListener("click", () => { runAutoTest().catch((error) => { console.error(error); addLog(`Ujian auto gagal: ${error.message}`); updateInfo("Ralat ujian auto"); }); });
+    musicBtn.addEventListener("click", () => { toggleMusic().catch((error) => { console.error(error); addLog(`Muzik gagal dimulakan: ${error.message}`); }); });
+    playerCountEl.addEventListener("change", () => { heroPlayersEl.textContent = `${playerCountEl.value} pemain`; if (!gameState.started) resetGame(); });
+    updateMusicButton();
+    buildBoard(); updateInfo("Sedia untuk dimulakan"); addLog("Pilih bilangan pemain dan tekan Mula.");
   </script>
 </body>
 </html>
